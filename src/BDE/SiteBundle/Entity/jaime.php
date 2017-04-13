@@ -16,6 +16,22 @@ class jaime
      */
     private $id_jaime;
 
+    /**
+     * @return mixed
+     */
+    public function getIdJaime()
+    {
+        return $this->id_jaime;
+    }
+
+    /**
+     * @param mixed $id_jaime
+     */
+    public function setIdJaime($id_jaime)
+    {
+        $this->id_jaime = $id_jaime;
+    }
+
 
 
 }

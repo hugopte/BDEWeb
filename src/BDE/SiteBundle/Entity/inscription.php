@@ -16,6 +16,22 @@ class inscription
      */
     private $id_inscription;
 
+    /**
+     * @return mixed
+     */
+    public function getIdInscription()
+    {
+        return $this->id_inscription;
+    }
+
+    /**
+     * @param mixed $id_inscription
+     */
+    public function setIdInscription($id_inscription)
+    {
+        $this->id_inscription = $id_inscription;
+    }
+
 
 
 }

@@ -15,11 +15,44 @@ class commentaire
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id_commentaire;
+    /**
+    * @ORM\Column(name="text_Comment", type="text")
+    */
+    private $text_Comment;
+    /**
+     * @return mixed
+     */
+    public function getIdCommentaire()
+    {
+        return $this->id_commentaire;
+    }
 
     /**
-     * @ORM\Column(name="text_Comment", type="text")
+     * @param mixed $id_commentaire
      */
-    private $text_Comment;
+    public function setIdCommentaire($id_commentaire)
+    {
+        $this->id_commentaire = $id_commentaire;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTextComment()
+    {
+        return $this->text_Comment;
+    }
+
+    /**
+     * @param mixed $text_Comment
+     */
+    public function setTextComment($text_Comment)
+    {
+        $this->text_Comment = $text_Comment;
+    }
+
+
+
 
 
 
