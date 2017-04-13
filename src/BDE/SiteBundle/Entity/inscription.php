@@ -4,24 +4,16 @@ namespace BDE\SiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * inscription
- */
+
 class inscription
 {
     /**
-     * @var int
+     * @ORM\Column(name="id_users", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $id_inscription;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+
 }

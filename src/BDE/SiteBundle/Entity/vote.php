@@ -10,46 +10,16 @@ use Doctrine\ORM\Mapping as ORM;
 class vote
 {
     /**
-     * @var int
+     * @ORM\Column(name="id_users", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $id_vote;
 
-    /**
-     * @var bool
-     */
+
     private $vote;
 
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    /**
-     * Set vote
-     *
-     * @param boolean $vote
-     * @return vote
-     */
-    public function setVote($vote)
-    {
-        $this->vote = $vote;
 
-        return $this;
-    }
-
-    /**
-     * Get vote
-     *
-     * @return boolean 
-     */
-    public function getVote()
-    {
-        return $this->vote;
-    }
 }
