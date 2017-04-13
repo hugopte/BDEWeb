@@ -16,7 +16,9 @@ class vote
      */
     private $id_vote;
 
-
+    /**
+     * @ORM\Column(name="vote", type="boolean")
+     */
     private $vote;
 
 

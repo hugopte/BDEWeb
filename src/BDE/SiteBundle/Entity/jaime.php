@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 class jaime
 {
     /**
-     * @ORM\Column(name="id_users", type="integer")
+     * @ORM\Column(name="id_jaime", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

@@ -10,17 +10,21 @@ use Doctrine\ORM\Mapping as ORM;
 class photo
 {
     /**
-     * @ORM\Column(name="id_users", type="integer")
+     * @ORM\Column(name="id_Photo", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $id_Photo;
 
+    /**
+     * @ORM\Column(name="url_photo", type="text")
+     */
+    private $url_Photo;
 
-    private $urlPhoto;
-
-
-    private $altPhoto;
+    /**
+     * @ORM\Column(name="alt_photo", type="text")
+     */
+    private $alt_Photo;
 
 
 
