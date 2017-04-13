@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Hugo PETTE
- * Date: 13/04/2017
- * Time: 14:52
- */
+
 
 use Doctrine\ORM\Mapping as ORM;
 
