@@ -9,7 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class activite
 {
-
+    /**
+     * @ORM\Column(name="id_activite", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id_activite;
 
     /**
