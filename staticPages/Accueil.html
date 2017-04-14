@@ -2,43 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Connexion au site du BDE</title>
-    <link rel="icon" sizes="144x144" href="Exia.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Site Web du BDE</title>
 </head>
-<header>
-    <p>Exia Cesi Arras</p>
-    <p>Campus Activité BDE</p>
-</header>
 <body>
-<h1>BDE EXIA ARRAS</h1>
-<img src="keyexia">
-<img src="logoExia">
-<article>
-    <p>Ce site est réservé aux étudiants, membres du BDE et aux encadrants de l'Exia CESI.</p>
-    <p>Sur ce site vous trouverez :</p>
-    <ul>
-        <li>Les différentes activités proposés</li>
-        <li>Postuler pour participer</li>
-        <li>Soumettres des activités</li>
-        <li>Accéder à la boutique des goodies de l'Exia</li>
-    </ul>
-</article>
-<article>
-    <form method="post" action="activitypage.html">
-        <p>
-            <label for="Email">Email :</label>
-            <input type="text" name="email" id="email" />
-            <label for="Password">Mot de Passe :</label>
-            <input type="Password" name="Password" id="Password">
-        </p>
-        <p>Se souvenir de moi</p>
-        <a href="register.html">Cliquer ici pour s'inscrire</a>
-        <input type="submit" name="Valider">
-    </form>
-</article>
-<!--Carrousselle-->
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
+</nav>
+
+<div class="jumbotron" id="main-jumbo">
+    <div class="container-fluid text-center">
+        <h1 id="titre">BDE EXIA ARRAS</h1>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8" id="para-left">
+            <p>Ce site est réservé aux étudiants, membres du BDE et aux encadrants de l'Exia CESI.</p>
+            <p>sur ce site vous pourrez:<br/>
+            <ul>
+                <li>Voir les différentes activités proposées</li>
+                <li>Postuler pour participer aux activités</li>
+                <li>Soumettre des activités</li>
+                <li>Accéder à la boutique des goodies de l'Exia</li>
+            </ul>
+            </p>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <form action="#" class="form-horizontal" method="post">
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <label for="">Email: </label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+                <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                    <label for="">Mot de Passe: </label>
+                    <input type="email" class="form-control" id="password">
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox"> Se souvenir de moi</label>
+                </div>
+                <button type="submit" class="btn btn-danger">Connexion</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
-<footer>
-    <p>Mentions légales - Contact - Support</p>
-</footer>
 </html>
