@@ -1,3 +1,11 @@
 bde_site_homepage:
     path:     /
     defaults: { _controller: BDESiteBundle:Accueil:index }
+
+bde_site_login:
+    path:     /login
+    defaults: { _controller: BDESiteBundle:Accueil:login }
+
+bde_site_register:
+    path:     /register
+    defaults: { _controller: BDESiteBundle:Accueil:register }
