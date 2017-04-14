@@ -3,47 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" sizes="144x144" href="Exia.png">
 </head>
-<header>
-    <p>Exia Cesi Arras</p>
-    <p>Campus Activité BDE</p>
-</header>
 <body>
-<h1>BDE EXIA ARRAS</h1>
-<img src="keyexia">
-<img src="logoExia">
-<article>
-    <form method="post" action="activitypage.html">
-        <p>
-            <label for="Nom">Nom :</label>
-            <input type="text" name="Nom" id="Nom" />
 
-            <label for="Prénom">Prénom :</label>
-            <input type="text" name="Prénom" id="Prénom" />
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
+</nav>
 
-            <label for="Email">Email :</label>
-            <input type="text" name="Email" id="Email" />
+<div class="jumbotron" id="main-jumbo">
+    <div class="container-fluid text-center">
+        <h1 id="titre">BDE EXIA ARRAS</h1>
+    </div>
+</div>
 
-            <label for="Password">Mot de Passe :</label>
-            <input type="Password" name="Password" id="Password">
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <form action="#" class="form-horizontal" method="post">
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label for="">Nom: </label>
+            <input type="nom" class="form-control" id="nom">
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label for="">Prenom: </label>
+            <input type="prenom" class="form-control" id="prenom">
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label for="">Email: </label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label for="">Mot de Passe: </label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label for="">Confirmation Mot de Passe: </label>
+            <input type="confpassword" class="form-control" id="confpassword">
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'" >Image</button>
 
-            <label for="CPassword">Confirmation du Mot de Passe :</label>
-            <input type="Password" name="CPassword" id="CPassword">
-
-        </p>
-        <p>Avatar : insérer une image :
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <input type="image" name="avatar" id="avatar" value="Image">
             <img src="#avatar">
-            <input type="button" onclick="self.location.href='Connexion.html'" name="Annuler" value="Annuler">
-            <input type="submit" name="valider">
-
-        </p>
-</article>
+        </div>
+            <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'" >Annuler</button>
+                <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'" >Valider</button>
+        </div>
+    </form>
+</div>
 </body>
 
 <footer>
-    <p><a href="LAW">Mentions légales</a> - <a href="Contact">Contact</a> - <a href="Support">Support</a>/p>
+    <p><a href="LAW">Mentions légales</a> - <a href="Contact">Contact</a> - <a href="Support">Support</a></p>
 </footer>
 
 <script src="js/jquery-3.2.0.min.js"></script>
