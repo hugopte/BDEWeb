@@ -5,7 +5,8 @@ namespace BDE\SiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Table(name="photo")
+ * @ORM\Entity(repositoryClass="BDE\SiteBundle\Entity\Repository\photoRepository")
  */
 class photo
 {

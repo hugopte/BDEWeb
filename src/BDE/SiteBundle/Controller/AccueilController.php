@@ -43,6 +43,10 @@ class AccueilController extends Controller
 
     public function registerAction (Request $request){
 
+
+
+        $em = $this->getDoctrine()->getManager();
+
         $error=null;
         if($request->isMethod('POST')){
             $password= $request->request->get('Password');
@@ -53,12 +57,20 @@ class AccueilController extends Controller
             $avatar=$request->request->get('avatar');
 
             if($password != "" && $email !="" && $nom !="" && $prenom != "" && $password === $Cpassword ){
+
+
                 $users = new users();
                 $users->setEmailUsers($email);
                 $users->setNomUsers($nom);
                 $users->setPasswordUsers($password);
                 $users->setRoleUsers('etudiant');
                 $users->setPrenomUsers($prenom);
+                $users->setAvatarUsers('yolo');
+
+
+                $em->persist($users);
+                $em->flush();
+                $error = "enregistrement effectué";
                 return $this->render('BDESiteBundle:Default:register.html.twig', array('error'=>$error  ));
             }
 
@@ -85,4 +97,3 @@ class AccueilController extends Controller
         }
     }
 }
-i
