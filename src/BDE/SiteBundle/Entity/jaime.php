@@ -6,8 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use BDE\SiteBundle\Entity\photo;
 
 /**
- * @ORM\Entity
+ * @ORM\Table(name="jaime")
+ * @ORM\Entity(repositoryClass="BDE\SiteBundle\Entity\Repository\jaimeRepository")
  */
+
 class jaime
 {
     /**
