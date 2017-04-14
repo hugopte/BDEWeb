@@ -71,3 +71,9 @@ body{
     left: 20px;
 }
 /*checkbox template end*/
+
+.resizeimg
+{
+    position: fixed;
+    left: 750px;
+}
