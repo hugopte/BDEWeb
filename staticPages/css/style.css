@@ -72,12 +72,12 @@ body{
 }
 /*checkbox template end*/
 
-.resizeimg
-{
-
-}
-
 .icons{
     width: 25px;
     padding-top: 13px;
+}
+.resizeimg
+{
+    width: 400px;
+    height: auto;
 }
