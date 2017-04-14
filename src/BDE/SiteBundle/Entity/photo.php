@@ -10,36 +10,49 @@ use Doctrine\ORM\Mapping as ORM;
 class photo
 {
     /**
-     * @ORM\Column(name="id_Photo", type="integer")
+     * @ORM\Column(name="id_photo", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id_Photo;
+    private $id_photo;
+
+    /**
+     * @ORM\OneToOne(targetEntity="users",cascade={"persist"} )
+     * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
+     **/
+    private $id_users;
+    /**
+     * @ORM\ManyToOne(targetEntity="activite",cascade={"persist"} )
+     * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
+     **/
+
+    private $id_activite;
+
 
     /**
      * @ORM\Column(name="url_photo", type="text")
      */
-    private $url_Photo;
+    private $url_photo;
 
     /**
      * @ORM\Column(name="alt_photo", type="text")
      */
-    private $alt_Photo;
+    private $alt_photo;
 
     /**
      * @return mixed
      */
     public function getIdPhoto()
     {
-        return $this->id_Photo;
+        return $this->id_photo;
     }
 
     /**
-     * @param mixed $id_Photo
+     * @param mixed $id_photo
      */
-    public function setIdPhoto($id_Photo)
+    public function setIdPhoto($id_photo)
     {
-        $this->id_Photo = $id_Photo;
+        $this->id_photo = $id_photo;
     }
 
     /**
@@ -47,15 +60,15 @@ class photo
      */
     public function getUrlPhoto()
     {
-        return $this->url_Photo;
+        return $this->url_photo;
     }
 
     /**
-     * @param mixed $url_Photo
+     * @param mixed $url_photo
      */
-    public function setUrlPhoto($url_Photo)
+    public function setUrlPhoto($url_photo)
     {
-        $this->url_Photo = $url_Photo;
+        $this->url_photo = $url_photo;
     }
 
     /**
@@ -63,16 +76,50 @@ class photo
      */
     public function getAltPhoto()
     {
-        return $this->alt_Photo;
+        return $this->alt_photo;
     }
 
     /**
-     * @param mixed $alt_Photo
+     * @return mixed
      */
-    public function setAltPhoto($alt_Photo)
+    public function getIdUsers()
     {
-        $this->alt_Photo = $alt_Photo;
+        return $this->id_users;
     }
+
+    /**
+     * @param mixed $id_users
+     */
+    public function setIdUsers($id_users)
+    {
+        $this->id_users = $id_users;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdActivite()
+    {
+        return $this->id_activite;
+    }
+
+    /**
+     * @param mixed $id_activite
+     */
+    public function setIdActivite($id_activite)
+    {
+        $this->id_activite = $id_activite;
+    }
+
+    /**
+     * @param mixed $alt_photo
+     */
+    public function setAltPhoto($alt_photo)
+    {
+        $this->alt_photo = $alt_photo;
+    }
+
+
 
 
 

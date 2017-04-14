@@ -15,9 +15,29 @@ class commentaire
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id_commentaire;
+
+
     /**
-    * @ORM\Column(name="text_Comment", type="text")
-    */
+     * @ORM\ManyToOne(targetEntity="users",cascade={"persist"} )
+     * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
+     **/
+    private $id_users;
+
+    /**
+     * @ORM\OneToOne(targetEntity="activite",cascade={"persist"} )
+     * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
+     **/
+    private $id_activite;
+
+
+    /**
+     * @ORM\Column(name="date_comment", type="date")
+     */
+    private $date_comment;
+
+    /**
+     * @ORM\Column(name="text_comment", type="text")
+     */
     private $text_Comment;
     /**
      * @return mixed
@@ -49,6 +69,54 @@ class commentaire
     public function setTextComment($text_Comment)
     {
         $this->text_Comment = $text_Comment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdUsers()
+    {
+        return $this->id_users;
+    }
+
+    /**
+     * @param mixed $id_users
+     */
+    public function setIdUsers($id_users)
+    {
+        $this->id_users = $id_users;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdActivite()
+    {
+        return $this->id_activite;
+    }
+
+    /**
+     * @param mixed $id_activite
+     */
+    public function setIdActivite($id_activite)
+    {
+        $this->id_activite = $id_activite;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateComment()
+    {
+        return $this->date_comment;
+    }
+
+    /**
+     * @param mixed $date_comment
+     */
+    public function setDateComment($date_comment)
+    {
+        $this->date_comment = $date_comment;
     }
 
 
