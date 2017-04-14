@@ -11,34 +11,97 @@ class AccueilController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('BDESiteBundle:Default:index.html.twig');
+        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => ""));
     }
 
 
 
 
-    public function loginAction(Request $request){
+    public function loginAction(Request $request)
+    {
+
+
+        if ($request->isMethod('POST')) {
+
+
+            $email = $request->request->get('Email');
+            $password = $request->request->get('Password');
+
+
+            if ($password != "" && $email != "") {
+                $repository = $this
+                    ->getDoctrine()
+                    ->getManager()
+                    ->getRepository('BDESiteBundle:users');
+
+                $users = new users();
+
+
+                $users = $repository->findOneBy(
+                    array('email_users' => $email)
+                );
+
+
+                if($users==null){
+
+                    $error ="Email invalide";
+                    return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+                }
+
+
+                else{
+                    if($password == $users->getPasswordUsers()){
+                        $error ="connexion en tant que ".$users->getRoleUsers();
+                        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+
+                    }
+                    else{
+                        $error ="Mot de passe incorrecte";
+                        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+                    }
+
+                }
+
+                //if valide dans la table
+                //return $this->redirectToRoute('oc_platform_home');
 
 
 
+                return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
 
-        if ($request->isMethod('POST'))
-        {
-
-
-            $password= $request->request->get('Password');
-            $email= $request->request->get('email');
-
-            //if valide dans la table
-            //return $this->redirectToRoute('oc_platform_home');
-
-
-
+            }
+            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => ""));
         }
 
-        return new Response($email.$password);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public function registerAction (Request $request){
@@ -47,51 +110,72 @@ class AccueilController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $error=null;
-        if($request->isMethod('POST')){
-            $password= $request->request->get('Password');
-            $Cpassword= $request->request->get('CPassword');
-            $email= $request->request->get('Email');
-            $nom= $request->request->get('Nom');
-            $prenom=$request->request->get('Prenom');
-            $avatar=$request->request->get('avatar');
 
-            if($password != "" && $email !="" && $nom !="" && $prenom != "" && $password === $Cpassword ){
+        if($request->isMethod('POST')) {
+            $password = $request->request->get('Password');
+            $Cpassword = $request->request->get('CPassword');
+            $email = $request->request->get('Email');
+            $nom = $request->request->get('Nom');
+            $prenom = $request->request->get('Prenom');
+            $avatar = $request->request->get('avatar');
 
+            /**if ($password != $Cpassword) {
+                $error = "Mot de passe non identique";
+                return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+            }*/
+            if ( $password != "" && $email != "" && $nom != "" && $prenom != "" ) {
+
+                $repository = $this
+                    ->getDoctrine()
+                    ->getManager()
+                    ->getRepository('BDESiteBundle:users');
 
                 $users = new users();
-                $users->setEmailUsers($email);
-                $users->setNomUsers($nom);
-                $users->setPasswordUsers($password);
-                $users->setRoleUsers('etudiant');
-                $users->setPrenomUsers($prenom);
-                $users->setAvatarUsers('yolo');
 
 
-                $em->persist($users);
-                $em->flush();
-                $error = "enregistrement effectué";
-                return $this->render('BDESiteBundle:Default:register.html.twig', array('error'=>$error  ));
+                $users = $repository->findOneBy(
+                    array('email_users' => $email)
+                );
+
+
+                if ($users != null) {
+                    $error = "Email deja utilisé";
+                    return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                } else {
+
+                    $users = new users();
+                    $users->setEmailUsers($email);
+                    $users->setNomUsers($nom);
+                    $users->setPasswordUsers($password);
+                    $users->setRoleUsers('etudiant');
+                    $users->setPrenomUsers($prenom);
+                    $users->setAvatarUsers('yolo');
+
+
+                    $em->persist($users);
+                    $em->flush();
+                    $error = "Inscription de " . $users->getEmailUsers();
+                    return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                }
+
             }
+            else {
 
-
-
-            else if ($password != "" && $email !="" && $nom !="" && $prenom!="" && $password != $Cpassword ){
-                $error="Erreur mot de passe non identique";
-                return $this->render('BDESiteBundle:Default:register.html.twig', array('error'=>$error  ));
-
-            }
-            else{
-
-                $error="Veuillez renseigner tout les champs";
-                return $this->render('BDESiteBundle:Default:register.html.twig', array('error'=>$error  ));
+                $error = "Veuillez renseigner tout les champs";
+                return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
 
 
             }
         }
+
+
+
+
+
+        //requete GET
         else{
 
-            $error=":)";
+            $error="";
             return $this->render('BDESiteBundle:Default:register.html.twig',array('error'=> $error  ));
 
         }

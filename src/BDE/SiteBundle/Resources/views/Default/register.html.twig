@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
     <link rel="icon" sizes="144x144" href="Exia.png">
+    <link rel="stylesheet" href="../src/BDE/SiteBundle/Resources/views/Default/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../src/BDE/SiteBundle/Resources/views/Default/css/style.css">
 </head>
 <header>
     <p>Exia Cesi Arras</p>
@@ -14,16 +16,16 @@
 <img src="keyexia">
 <img src="logoExia">
 
-{{error}}
 
+{{ error }}
 <article>
     <form method="post" action="register">
         <p>
             <label for="Nom">Nom :</label>
             <input type="text" name="Nom" id="Nom" />
 
-            <label for="Prenom">Prénom :</label>
-            <input type="text" name="Prenom" id="Prenom" />
+            <label for="Prénom">Prénom :</label>
+            <input type="text" name="Prenom" id="Prénom" />
 
             <label for="Email">Email :</label>
             <input type="text" name="Email" id="Email" />
@@ -40,15 +42,16 @@
             <img src="#avatar">
             <input type="button" onclick="self.location.href='Connexion.html'" name="Annuler" value="Annuler">
             <input type="submit" name="valider">
-
         </p>
-</article>
-<article>
+</article>    </form>
 
-</article>
+</body>
 
 <footer>
     <p><a href="LAW">Mentions légales</a> - <a href="Contact">Contact</a> - <a href="Support">Support</a>/p>
 </footer>
-</body>
+
+<script src="../src/BDE/SiteBundle/Resources/views/Default/js/jquery-3.2.0.min.js"></script>
+<script src="../src/BDE/SiteBundle/Resources/views/Default/js/bootstrap.min.js"></script>
+
 </html>
