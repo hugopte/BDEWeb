@@ -70,4 +70,10 @@ body{
     background: inherit;
     left: 20px;
 }
+
+.resizeimg
+{
+    position: fixed;
+    left: 750px;
+}
 /*checkbox template end*/
