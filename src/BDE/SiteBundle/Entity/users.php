@@ -24,6 +24,10 @@ class users {
      */
     private $email_users;
     /**
+     * @ORM\Column(name="_prenom_users", type="text")
+     */
+    private $prenom_users;
+    /**
      * @ORM\Column(name="password_users", type="text")
      */
     private $password_users;
@@ -132,6 +136,22 @@ class users {
     public function setRoleUsers($role_users)
     {
         $this->role_users = $role_users;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrenomUsers()
+    {
+        return $this->prenom_users;
+    }
+
+    /**
+     * @param mixed $prenom_users
+     */
+    public function setPrenomUsers($prenom_users)
+    {
+        $this->prenom_users = $prenom_users;
     }
 
 

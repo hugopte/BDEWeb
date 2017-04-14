@@ -2,6 +2,7 @@
 
 namespace BDE\SiteBundle\Controller;
 
+use BDE\SiteBundle\Entity\users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,8 @@ class AccueilController extends Controller
         {
 
 
-           $password= $request->request->get('Password');
-           $email= $request->request->get('email');
+            $password= $request->request->get('Password');
+            $email= $request->request->get('email');
 
             //if valide dans la table
             //return $this->redirectToRoute('oc_platform_home');
@@ -42,7 +43,7 @@ class AccueilController extends Controller
 
     public function registerAction (Request $request){
 
-$error="-";
+        $error=null;
         if($request->isMethod('POST')){
             $password= $request->request->get('Password');
             $Cpassword= $request->request->get('CPassword');
@@ -51,8 +52,13 @@ $error="-";
             $prenom=$request->request->get('Prenom');
             $avatar=$request->request->get('avatar');
 
-            if($password != "" && $email !="" && $nom !="" && $prenom!="" && $password === $Cpassword ){
-                $error="tentative de connexion";
+            if($password != "" && $email !="" && $nom !="" && $prenom != "" && $password === $Cpassword ){
+                $users = new users();
+                $users->setEmailUsers($email);
+                $users->setNomUsers($nom);
+                $users->setPasswordUsers($password);
+                $users->setRoleUsers('etudiant');
+                $users->setPrenomUsers($prenom);
                 return $this->render('BDESiteBundle:Default:register.html.twig', array('error'=>$error  ));
             }
 
@@ -79,3 +85,4 @@ $error="-";
         }
     }
 }
+i
