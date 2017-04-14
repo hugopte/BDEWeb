@@ -20,6 +20,8 @@ class AccueilController extends Controller
     public function loginAction(Request $request)
     {
 
+        $session = $request ->getSession();
+        $session->set('user_id',0);
 
         if ($request->isMethod('POST')) {
 
@@ -51,6 +53,10 @@ class AccueilController extends Controller
 
                 else{
                     if($password == $users->getPasswordUsers()){
+
+
+
+                        $session->set('user_id',$users->getIdUsers());
                         $error ="connexion en tant que ".$users->getRoleUsers();
                         return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
 
@@ -70,7 +76,7 @@ class AccueilController extends Controller
                 return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
 
             }
-            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => ""));
+            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
         }
 
 
