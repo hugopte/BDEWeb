@@ -1,8 +1,13 @@
-.navbar-inverse{
+#nav-top{
     padding-bottom: 1%;
     background-color: #c2242a;
     border-color: #c2242a;
     color: white;
+}
+
+#nav-bottom{
+    background-color: #c2242a;
+    border-color: #c2242a;
 }
 
 .navbar-inverse .navbar-brand{
@@ -72,12 +77,17 @@ body{
 }
 /*checkbox template end*/
 
-.resizeimg
-{
-
-}
-
 .icons{
     width: 25px;
     padding-top: 13px;
 }
+.resizeimg
+{
+    width: 400px;
+    height: auto;
+}
+#SA,#B
+{
+    color: black;
+}
+
