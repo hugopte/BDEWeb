@@ -74,6 +74,10 @@ body{
 
 .resizeimg
 {
-    position: fixed;
-    left: 750px;
+
+}
+
+.icons{
+    width: 25px;
+    padding-top: 13px;
 }
