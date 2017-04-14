@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Inscription à un evenement</title>
+    <title>Soumettre un article</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" sizes="144x144" href="Exia.png">
@@ -22,19 +22,25 @@
 <div class="col-sm-4 col-md-4 col-lg-4">
     <form action="#" class="form-horizontal" method="post">
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <label for="">Je m'inscit à l'activité:</label>
+            <label for="">Nom de l'article: </label>
+            <input type="nomactivite" class="form-control" id="nomactivite">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <label for="">Info : </label>
-            <input type="info_1" class="form-control" id="info_1">
+            <label for="">Catégorie: </label>
+            <input type="categorie" class="form-control" id="categorie">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <label for="">Info: </label>
-            <input type="info_2" class="form-control" id="info_2">
+            <label for="">Description: </label>
+            <input type="description" class="form-control" id="description">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <label for="">Info: </label>
-            <input type="info_3" class="form-control" id="info_3">
+            <p>Insérer une image:</p>
+            <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'">Image</button>
+
+        </div>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <input type="image" name="avatar" id="avatar" value="Image">
+            <img src="#avatar">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'">Annuler
