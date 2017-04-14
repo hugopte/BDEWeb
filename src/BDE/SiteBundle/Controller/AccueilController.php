@@ -58,7 +58,7 @@ class AccueilController extends Controller
 
                         $session->set('user_id',$users->getIdUsers());
                         $error ="connexion en tant que ".$users->getRoleUsers();
-                        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+                        return $this->redirectToRoute('bde_site_layout');
 
                     }
                     else{
