@@ -14,7 +14,13 @@
     color: white;
 }
 
+.navbar-inverse{
+    border-radius: 0;
+}
 
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
 
 #titre{
     color: #c2242a;

@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Inscription à un evenement</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" sizes="144x144" href="Exia.png">
+    <link rel="icon" sizes="144x144" href="../src/BDE/SiteBundle/Resources/views/Default/Exia.png">
+    <link href="../src/BDE/SiteBundle/Resources/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/BDE/SiteBundle/Resources/public/css/style.css">
 </head>
 <body>
 
-<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
 </nav>
 
-<div class="jumbotron" id="main-jumbo">
+<div class="navbar navbar-inverse">
+    <p href="#" class="navbar-brand mb-0">S'inscrire à l'évènement</p>
+</div>
+
+<!--<div class="jumbotron" id="main-jumbo">
     <div class="container-fluid text-center">
         <h1 id="titre">BDE EXIA ARRAS</h1>
     </div>
-</div>
+</div>-->
 
 <div class="col-sm-4 col-md-4 col-lg-4">
     <form action="#" class="form-horizontal" method="post">
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <label for="">Je m'inscit à l'activité:</label>
+            <label for="">Je m'inscrit à l'activité:</label>
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label for="">Info : </label>
@@ -48,7 +52,7 @@
 
 
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
                 <li><a href="#">Mentions légales</a></li>
