@@ -28,7 +28,7 @@ class activite
     private $description_activite;
 
     /**
-     * @ORM\Column(name="date_activite", type="date")
+     * @ORM\Column(name="date_activite", type="string")
      */
     private $date_activite;
 

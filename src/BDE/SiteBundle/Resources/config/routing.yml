@@ -13,3 +13,11 @@ bde_site_register:
 bde_site_layout:
     path:     /layout
     defaults: { _controller: BDESiteBundle:Layout:index }
+
+bde_site_layout_add:
+    path:     /layout/add
+    defaults: { _controller: BDESiteBundle:Layout:add }
+
+bde_site_layout_del:
+    path:     /layout/del/{id}
+    defaults: { _controller: BDESiteBundle:Layout:del }
