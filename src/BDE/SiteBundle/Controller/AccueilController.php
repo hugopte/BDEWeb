@@ -15,97 +15,81 @@ class AccueilController extends Controller
     }
 
 
-
-
     public function loginAction(Request $request)
-{
+    {
 
-$session = $request ->getSession();
-$session->set('user_id',0);
+        $session = $request->getSession();
+        $session->set('user_id', 0);
 
-if ($request->isMethod('POST')) {
-
-
-$email = $request->request->get('Email');
-$password = $request->request->get('Password');
+        if ($request->isMethod('POST')) {
 
 
-if ($password != "" && $email != "") {
-$repository = $this
-->getDoctrine()
-->getManager()
-->getRepository('BDESiteBundle:users');
-
-$users = new users();
+            $email = $request->request->get('Email');
+            $password = $request->request->get('Password');
 
 
-$users = $repository->findOneBy(
-array('email_users' => $email)
-);
+            if ($password != "" && $email != "") {
+                $repository = $this
+                    ->getDoctrine()
+                    ->getManager()
+                    ->getRepository('BDESiteBundle:users');
+
+                $users = new users();
 
 
-if($users==null){
-
-$error ="Email invalide";
-return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
-}
+                $users = $repository->findOneBy(
+                    array('email_users' => $email)
+                );
 
 
-else{
-    if($password == $users->getPasswordUsers()){
+                if ($users == null) {
+
+                    $error = "Email invalide";
+                    return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+                } else {
+                    if ($password == $users->getPasswordUsers()) {
 
 
+                        $session->set('user_id', $users->getIdUsers());
+                        $error = "connexion en tant que " . $users->getRoleUsers();
+                        return $this->redirectToRoute('bde_site_layout');
 
-        $session->set('user_id',$users->getIdUsers());
-        $error ="connexion en tant que ".$users->getRoleUsers();
-        return $this->redirectToRoute('bde_site_layout');
+                    } else {
+                        $error = "Mot de passe incorrecte";
+                        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+                    }
+
+                }
+
+
+                return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
+
+            }
+            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
+        }
+
 
     }
-    else{
-        $error ="Mot de passe incorrecte";
-        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
-    }
-
-}
 
 
-
-
-
-return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
-
-}
-return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
-}
-
-
-
-}
-
-
-
-
-
-
-
-public function registerAction (Request $request){
-
+    public function registerAction(Request $request)
+    {
 
 
         $em = $this->getDoctrine()->getManager();
 
 
-        if($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) {
             $password = $request->request->get('Password');
             $Cpassword = $request->request->get('CPassword');
             $email = $request->request->get('Email');
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
             $avatar = $request->request->get('icone');
+            var_dump($avatar);
 
 
-
-            if ( $password != null && $email != null && $nom != null && $prenom != null ) {
+            if ($password != null && $email != null && $nom != null && $prenom != null) {
 
                 $repository = $this
                     ->getDoctrine()
@@ -137,46 +121,47 @@ public function registerAction (Request $request){
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
 
-                        if($avatar =="") {
+                        if (false) {
                             $users->setAvatarUsers('yolo');
+                        } else {
+
+
                         }
-                        else{
-                            $nameimg ='C:\wamp64\www\BDEWeb\img\avatar.'.$users->getNomUsers().'.png';
-                            $resultat=move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
-                            var_dump($resultat);
-
-                            }
-                        $users->setAvatarUsers($nameimg);
 
 
+                        $users->setAvatarUsers($avatar);
 
-                        $em->persist($users);
-                        $em->flush();
-                        $error = "Inscription de " . $users->getEmailUsers();
-                        return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+
                     }
-                }
 
-            }
-            else {
+                    //
+
+
+                    $em->persist($users);
+                    $em->flush();
+                    $error = "Inscription de " . $users->getEmailUsers();
+                    return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                }
+            } else {
 
                 $error = "Veuillez renseigner tout les champs";
                 return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
 
-
             }
         }
 
 
-
-
-
         //requete GET
-        else{
+        else {
 
-            $error="";
-            return $this->render('BDESiteBundle:Default:register.html.twig',array('error'=> $error  ));
+            $error = "";
+            return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
 
         }
+
     }
+
+
 }
+
+

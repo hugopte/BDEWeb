@@ -27,3 +27,10 @@ bde_site_layout_activite:
     path:     /layout/activite/{id}
     defaults: { _controller: BDESiteBundle:Layout:activite }
 
+bde_site_gestion_user:
+    path:     /gestion
+    defaults: { _controller: BDESiteBundle:gestion:users }
+
+
+
+
