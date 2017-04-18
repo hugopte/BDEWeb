@@ -29,6 +29,8 @@
 
 
 
+
+
      <p>Description : </p>
      <p>{{ activite.getDescriptionActivite }} </p> -->
 </div>
@@ -41,6 +43,27 @@
     <input type="submit" value="Je m'inscris" />
 </form>
 
+Participant:
+{% for inscrit in inscrits %}
+
+{{  inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }} </br>
+
+
+
+{% endfor %}
+
+
+
+
+{% for com in comment %}
+
+ {{ com.getIdUsers().getNomUsers() }}
+  {{ com.getIdUsers().getPrenomUsers() }}
+
+ {{ com.getTextComment() }}
+
+
+{% endfor %}
 <footer>
     <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">

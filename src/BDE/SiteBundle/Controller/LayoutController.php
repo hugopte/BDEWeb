@@ -110,7 +110,7 @@ class LayoutController extends Controller
 
     public function delAction(Request $request,$id){
 
-
+        $em = $this->getDoctrine()->getManager();
         $this->VerifUser($request);
         $repository = $this
             ->getDoctrine()
@@ -136,6 +136,31 @@ class LayoutController extends Controller
 
         else {
 
+
+
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:commentaire');
+            $commentaires = $repository->findBy(array('id_activite' =>$id));
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:inscription');
+            $inscriptions = $repository->findBy(array('id_activite' =>$id));
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:photo');
+            $photos = $repository->findBy(array('id_activite' =>$id));
+
+
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:vote');
+            $votes = $repository->findBy(array('id_activite' =>$id));
+
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
@@ -144,7 +169,13 @@ class LayoutController extends Controller
 
             $activite = $repository->findOneBy(array('id_activite' =>$id));
 
-            $em = $this->getDoctrine()->getManager();
+
+            foreach ($commentaires as $commentaire){$em->remove($commentaire);}
+
+            foreach ($inscriptions as $inscription){$em->remove($inscription);}
+            foreach ($photos as $photo){$em->remove($photo);}
+            foreach ($votes as $vote){$em->remove($vote);}
+
 
 
                 $em->remove($activite);
@@ -159,7 +190,7 @@ class LayoutController extends Controller
     }
 
     public function activiteAction(Request $request, $id ){
-
+        $em = $this->getDoctrine()->getManager();
 
         if($request->isMethod('POST')){
 
@@ -196,6 +227,8 @@ class LayoutController extends Controller
             ->getManager()
             ->getRepository('BDESiteBundle:inscription');
 
+
+
         if($request->isMethod('POST')){
 
 
@@ -204,17 +237,23 @@ class LayoutController extends Controller
 
             if($inscription == 'on' ){
 
-                $inscription = new inscription();
-
-                $inscription->setIdActivite($activite);
+                $inscription = $repository->findOneBy(array('id_activite' =>$id_activite,'id_users'=>$id_users));
 
 
-                $inscription->setIdUsers($users);
+                if($inscription == null) {
 
-                $em->persist($inscription);
+                    $inscription = new inscription();
 
-                $em->flush();
+                    $inscription->setIdActivite($activite);
 
+
+                    $inscription->setIdUsers($users);
+
+                    $em->persist($inscription);
+
+                    $em->flush();
+
+                }
             }
 
 
@@ -222,7 +261,22 @@ class LayoutController extends Controller
         }
 
 
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:inscription');
 
+        $inscrit = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
+
+
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:commentaire');
+
+
+        $commentaires = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
 
 
         //$query = $em->createQuery('SELECT u ,i  FROM BDESiteBundle:inscription i JOIN u.id_inscription i WHERE i.id_activite = :id');
@@ -230,7 +284,7 @@ class LayoutController extends Controller
         //$results = $query->getResult();
         //var_dump($results);
 
-        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite));
+        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires));
 
 
     }
