@@ -4,7 +4,7 @@
 --
 -- Client :  127.0.0.1
 -- Généré le :  Mar 18 Avril 2017 à 07:17
--- Version du serveur :  5.7.14
+-- Version du serveur :  5.7.14sitewebworkshopapisiteweb
 -- Version de PHP :  7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
