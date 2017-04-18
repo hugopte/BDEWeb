@@ -9,6 +9,7 @@
 namespace BDE\SiteBundle\Controller;
 
 use BDE\SiteBundle\Entity\activite;
+use BDE\SiteBundle\Entity\commentaire;
 use BDE\SiteBundle\Entity\inscription;
 use BDE\SiteBundle\Entity\users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,7 +22,8 @@ class LayoutController extends Controller
     public function indexAction(Request $request)
     {
 
-        $this->VerifUser($request);
+
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -65,7 +67,7 @@ class LayoutController extends Controller
     public function addAction(Request $request)
     {
 
-        $this->VerifUser($request);
+
 
 
         if ($request->isMethod('GET')) {
@@ -111,7 +113,7 @@ class LayoutController extends Controller
     public function delAction(Request $request,$id){
 
         $em = $this->getDoctrine()->getManager();
-        $this->VerifUser($request);
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -192,14 +194,8 @@ class LayoutController extends Controller
     public function activiteAction(Request $request, $id ){
         $em = $this->getDoctrine()->getManager();
 
-        if($request->isMethod('POST')){
-
-            $inscription = $request->request->get('inscription');
 
 
-
-        }
-        $this->VerifUser($request);
 
         $repository = $this
             ->getDoctrine()
@@ -233,6 +229,8 @@ class LayoutController extends Controller
 
 
             $inscription = $request->request->get('inscription');
+            $comment = $request->request->get('Comment');
+
 
 
             if($inscription == 'on' ){
@@ -254,6 +252,18 @@ class LayoutController extends Controller
                     $em->flush();
 
                 }
+            }
+            if($comment !="" ||$comment !=null){
+
+                $commentaire = new commentaire();
+                $commentaire->setIdActivite($activite);
+                $commentaire->setIdUsers($users);
+                $commentaire->setTextComment($comment);
+
+
+                $em ->persist($commentaire);
+                $em->flush();
+
             }
 
 
@@ -302,18 +312,21 @@ class LayoutController extends Controller
         $session = $request->getSession();
 
 
-        if ($session->get('id_user') == 0) {
+        if ($session->get('id_user') === 0) {
 
 
-            return $this->redirectToRoute('bde_site_homepage');
+            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Vous n'avez pas les droits"));
 
 
         }
 
 
-        if ($session->get('id_user')== null){
-            return $this->redirectToRoute('bde_site_homepage');
+        elseif($session->get('id_user')== null){
+            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Vous n'avez pass les droits"));
         }
+
+
+        else{return null;}
 
 
     }

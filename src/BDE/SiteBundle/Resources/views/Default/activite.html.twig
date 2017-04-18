@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
+<br>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</p>
 </nav>
@@ -55,18 +55,18 @@ Participant:
 
 
 {% for com in comment %}
-
+</br>
  {{ com.getIdUsers().getNomUsers() }}
   {{ com.getIdUsers().getPrenomUsers() }}
-
+</br>
  {{ com.getTextComment() }}
 
 
 {% endfor %}
 
 <form action="" method="post">
-    <textarea name="Comment" rows="5" cols="20">Write your comment</textarea>
-    <button type="submit"  value="Comment"></button>
+    <textarea name="Comment" rows="5" cols="20">Ecrivez votre commentaire</textarea>
+    <button type="submit"  >Commentez</button>
 </form>
 
 <footer>

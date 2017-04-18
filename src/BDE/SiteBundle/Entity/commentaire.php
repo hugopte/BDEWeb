@@ -24,16 +24,12 @@ class commentaire
 
     private $id_users;
     /**
-     * @ORM\OneToOne(targetEntity="activite",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="activite",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
      **/
 
     private $id_activite;
-    /**
-     * @ORM\Column(name="date_comment", type="date")
-     */
 
-    private $date_comment;
     /**
      * @ORM\Column(name="text_comment", type="text")
      */
@@ -103,21 +99,7 @@ class commentaire
         $this->id_activite = $id_activite;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDateComment()
-    {
-        return $this->date_comment;
-    }
 
-    /**
-     * @param mixed $date_comment
-     */
-    public function setDateComment($date_comment)
-    {
-        $this->date_comment = $date_comment;
-    }
 
 
 

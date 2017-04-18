@@ -18,69 +18,69 @@ class AccueilController extends Controller
 
 
     public function loginAction(Request $request)
-    {
+{
 
-        $session = $request ->getSession();
-        $session->set('user_id',0);
+$session = $request ->getSession();
+$session->set('user_id',0);
 
-        if ($request->isMethod('POST')) {
-
-
-            $email = $request->request->get('Email');
-            $password = $request->request->get('Password');
+if ($request->isMethod('POST')) {
 
 
-            if ($password != "" && $email != "") {
-                $repository = $this
-                    ->getDoctrine()
-                    ->getManager()
-                    ->getRepository('BDESiteBundle:users');
-
-                $users = new users();
+$email = $request->request->get('Email');
+$password = $request->request->get('Password');
 
 
-                $users = $repository->findOneBy(
-                    array('email_users' => $email)
-                );
+if ($password != "" && $email != "") {
+$repository = $this
+->getDoctrine()
+->getManager()
+->getRepository('BDESiteBundle:users');
+
+$users = new users();
 
 
-                if($users==null){
-
-                    $error ="Email invalide";
-                    return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
-                }
+$users = $repository->findOneBy(
+array('email_users' => $email)
+);
 
 
-                else{
-                    if($password == $users->getPasswordUsers()){
+if($users==null){
+
+$error ="Email invalide";
+return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+}
 
 
-
-                        $session->set('user_id',$users->getIdUsers());
-                        $error ="connexion en tant que ".$users->getRoleUsers();
-                        return $this->redirectToRoute('bde_site_layout');
-
-                    }
-                    else{
-                        $error ="Mot de passe incorrecte";
-                        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
-                    }
-
-                }
+else{
+    if($password == $users->getPasswordUsers()){
 
 
 
-
-
-                return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
-
-            }
-            return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
-        }
-
-
+        $session->set('user_id',$users->getIdUsers());
+        $error ="connexion en tant que ".$users->getRoleUsers();
+        return $this->redirectToRoute('bde_site_layout');
 
     }
+    else{
+        $error ="Mot de passe incorrecte";
+        return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
+    }
+
+}
+
+
+
+
+
+return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
+
+}
+return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
+}
+
+
+
+}
 
 
 
@@ -88,29 +88,7 @@ class AccueilController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function registerAction (Request $request){
+public function registerAction (Request $request){
 
 
 
@@ -123,12 +101,10 @@ class AccueilController extends Controller
             $email = $request->request->get('Email');
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
-            $avatar = $request->request->get('avatar');
+            $avatar = $request->request->get('icone');
 
-            /**if ($password != $Cpassword) {
-                $error = "Mot de passe non identique";
-                return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
-            }*/
+
+
             if ( $password != null && $email != null && $nom != null && $prenom != null ) {
 
                 $repository = $this
@@ -160,7 +136,18 @@ class AccueilController extends Controller
                         $users->setPasswordUsers($password);
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
-                        $users->setAvatarUsers('yolo');
+
+                        if($avatar =="") {
+                            $users->setAvatarUsers('yolo');
+                        }
+                        else{
+                            $nameimg ='C:\wamp64\www\BDEWeb\img\avatar.'.$users->getNomUsers().'.png';
+                            $resultat=move_uploaded_file($_FILES['icone']['tmp_name'],$nom);
+                            var_dump($resultat);
+
+                            }
+                        $users->setAvatarUsers($nameimg);
+
 
 
                         $em->persist($users);
