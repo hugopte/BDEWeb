@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ activite.getNomActivite() }}</title>
+    <link rel="icon" sizes="144x144" href="Exia.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</p>
+</nav>
+
+<div class="jumbotron" id="main-jumbo">
+    <div class="container-fluid text-center">
+        <h1 id="titre">BDE EXIA ARRAS</h1>
+    </div>
+</div>
+<div>
+    <h2 id="Activité">Activité : {{ activite.getNomActivite() }}</h2>
+</div>
+
+<div class="col-sm-6 col-md-6 col-lg-7">
+
+
+
+
+</div>
+
+     <p>Description : </p>
+     <p>{{ activite.getDescriptionActivite }} </p> -->
+
+
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav navbar-nav pull-left">
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+            <a href="#"><img src="Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+        </div>
+    </div>
+</footer>
+
+
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -108,6 +108,8 @@ class LayoutController extends Controller
 
 
     public function delAction(Request $request,$id){
+
+
         $this->VerifUser($request);
         $repository = $this
             ->getDoctrine()
@@ -155,6 +157,47 @@ class LayoutController extends Controller
         }
     }
 
+    public function activiteAction(Request $request, $id ){
+        $this->VerifUser($request);
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:users');
+
+        $session = $request->getSession();
+        $users_id = $session->get('user_id');
+
+        $users = $repository->findOneBy(array('id_users' =>$users_id));
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:activite');
+
+
+        $activite =$repository->findOneBy(array('id_activite' =>$id));
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:inscription');
+
+
+        $em = $this->getDoctrine()->getManager();
+
+
+        //$query = $em->createQuery('SELECT u ,i  FROM BDESiteBundle:inscription i JOIN u.id_inscription i WHERE i.id_activite = :id');
+        //$query->setParameter('id', $activite->getIdActivite());
+        //$results = $query->getResult();
+        //var_dump($results);
+
+
+
+        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite));
+
+
+    }
+
 
 
 
@@ -168,12 +211,17 @@ class LayoutController extends Controller
         $session = $request->getSession();
 
 
-        if ($session->get('id_user') === 0) {
+        if ($session->get('id_user') == 0) {
 
 
             return $this->redirectToRoute('bde_site_homepage');
 
 
+        }
+
+
+        if ($session->get('id_user')== null){
+            return $this->redirectToRoute('bde_site_homepage');
         }
 
 
