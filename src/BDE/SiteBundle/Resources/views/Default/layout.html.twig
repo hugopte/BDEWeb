@@ -3,48 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>BDE</title>
-    <link rel="icon" sizes="144x144" href="Exia.png">
+    <link rel="icon" sizes="144x144" href="Photo/Exia.png">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
 </head>
+
+<body>
 <header>
     <p>Exia Cesi Arras</p>
     <p>Bonjour {{ users.getNomUsers() }}</p>
     <img src="avatar">
     <p>Campus Activité BDE</p>
 </header>
-<body>
-<h1>BDE EXIA ARRAS</h1>
+
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
+</nav>
+
 <img src="keyexia">
 <img src="logoExia">
 
+<div class="navbar navbar-inverse">
+    <p href="#" class="navbar-brand mb-0">Liste activités</p>
+</div>
 
+{% for activite in activites %}
 
+    <article class="col-sm-4 col-md-4 col-lg-4">
+        <h3 class="col-sm-12 col-md-12 col-lg-12">{{ activite.getNomActivite() }}</h3>
+        <img src="">
+        <a href="#" class="col-sm-3 col-md-3 col-lg-3"><img src="Photo/Exia.png" alt="like" class="like"></a>
 
-{%for activite in activites%}
-<article>Activité : {{ activite.getNomActivite() }}
-    <img src="">
-    <p>Description de l'activité</p>
-    <P>{{ activite.getDescriptionActivite() }}</P>
+        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+            <label>Description de l'activité</label>
+            <label>{{ activite.getDescriptionActivite() }}</label>
+        </div>
 
-    <p>Date :{{ activite.getDateActivite()|date('d-m-Y') }} </p>
-    <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
-{% if users.getRoleUsers() == 'BDE' %}
-    <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            Date :{{ activite.getDateActivite()|date('d-m-Y') }}
+        </div>
 
-    {% elseif users.getRoleUsers() == 'Admin' %}
+        <div class="col-sm-4 col-md-4 col-lg-4">
+        <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
+        {% if users.getRoleUsers() == 'BDE' %}
+            <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
-        <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+        {% elseif users.getRoleUsers() == 'Admin' %}
 
+            <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
-    {% else %}
-    {% endif %}
+        {% else %}
+        {% endif %}
+        </div>
 
-</article>
+    </article>
+
 {% endfor %}
 
-</body>
-
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
                 <li><a href="#">Mentions légales</a></li>
@@ -58,7 +77,10 @@
     </div>
 </footer>
 
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
 
+</body>
 </html>
