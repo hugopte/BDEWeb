@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>BDE</title>
-    <link rel="icon" sizes="144x144" href="Exia.png">
+    <link rel="icon" sizes="144x144" href="../src/BDE/SiteBundle/Resources/views/Default/Exia.png">
+    <link href="../src/BDE/SiteBundle/Resources/public/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/BDE/SiteBundle/Resources/public/css/style.css">
 </head>
-<header>
-    <p>Exia Cesi Arras</p>
-    <p>Bonjour Prenom</p>
-    <img src="avatar">
-    <p>Campus Activité BDE</p>
-</header>
 <body>
-<h1>BDE EXIA ARRAS</h1>
-<img src="keyexia">
-<img src="logoExia">
-<article>Activité : 4L Trophy
-    <img src="">
-    <p>Description de l'activité</p>
-    <P>Cette activité sera organisé par selon le nombre de participants nous ferons des équipes plus ou moins grandes
-        ...</P>
-    <button name="Détails">Détails</button>
+
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
+    <div class="container-fluid">
+        <p class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
+        <p class="pull-right" style="padding-top: 2.5%; padding-right: 10%;">Bonjour Prenom</p>
+    </div>
+</nav>
+
+<div class="navbar navbar-inverse">
+    <p href="#" class="navbar-brand mb-0">Liste activités</p>
+</div>
+
+<article>
+    <div class="container-fluid" style="background-color: #cecebe">
+        <h3 class="col-sm-12 col-md-12 col-lg-12">4L Trophy</h3>
+        <a href="#" class="col-sm-3 col-md-3 col-lg-3"><img src="../src/BDE/SiteBundle/Resources/views/Default/Exia.png" alt="like" class="like"></a>
+        <img class="image-activite" src="../src/BDE/SiteBundle/Resources/views/Default/Photo/slide1.jpg" alt="photo article" style="width: 300px;">
+    </div>
 </article>
 
 <article> Activités BDS (foot)
@@ -29,10 +34,9 @@
     <P>Cette activité sera organisé par selon le nombre de participants nous ferons des équipes équilibrés ...</P>
     <button name="Détails">Détails</button>
 </article>
-</body>
 
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
                 <li><a href="#">Mentions légales</a></li>
@@ -46,7 +50,8 @@
     </div>
 </footer>
 
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../src/BDE/SiteBundle/Resources/public/js/jquery-3.2.0.min.js"></script>
+<script src="../src/BDE/SiteBundle/Resources/public/js/bootstrap.min.js"></script>
+</body>
 
 </html>
