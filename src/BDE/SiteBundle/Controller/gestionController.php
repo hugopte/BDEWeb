@@ -37,7 +37,7 @@ class gestionController extends Controller
        $users = $repository->findAll();
 
 
-       return $this->render('BDESiteBundle:Default:gestion.html.twig',array('activite' =>$users));
+       return $this->render('BDESiteBundle:Default:gestion.html.twig',array('users' =>$users));
 
 
    }
