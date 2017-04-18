@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Soumettre une activite</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
     <link rel="icon" sizes="144x144" href="Exia.png">
 </head>
 <body>
 
-<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
 </nav>
 
-<div class="jumbotron" id="main-jumbo">
-    <div class="container-fluid text-center">
-        <h1 id="titre">BDE EXIA ARRAS</h1>
-    </div>
+<div class="navbar navbar-inverse">
+    <p href="#" class="navbar-brand mb-0">Inscription</p>
 </div>
+
 {{ text }}
 <div class="col-sm-4 col-md-4 col-lg-4">
     <form action="add" class="form-horizontal" method="post">
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label for="">Titre de l'activité: </label>
-            <input type="titreactivite" class="form-control" id="titreactivite" name="NomActivite">
+            <input type="text" class="form-control" id="titreactivite" name="NomActivite">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label for="">date: </label>
@@ -31,7 +32,7 @@
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label for="">Description: </label>
-            <input type="description" class="form-control" id="description" name="Description">
+            <textarea class="form-control" id="description" name="Description">
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <p>Insérer une image:</p>
@@ -50,26 +51,27 @@
         </div>
     </form>
 </div>
-</body>
 
 
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
-            <a href="#"><img src="../src/BDE/SiteBundle/Resources/views/Default/Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
-            <a href="#"><img src="../src/BDE/SiteBundle/Resources/views/Default/Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
-            <a href="#"><img src="../src/BDE/SiteBundle/Resources/views/Default/Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
         </div>
     </div>
 </footer>
 
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
 
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
+</body>
 </html>

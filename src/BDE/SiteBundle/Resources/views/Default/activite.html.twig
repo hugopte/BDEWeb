@@ -4,48 +4,42 @@
     <meta charset="UTF-8">
     <title>{{ activite.getNomActivite() }}</title>
     <link rel="icon" sizes="144x144" href="Exia.png">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
+    <link rel="icon" sizes="144x144" href="Exia.png">
 </head>
+
 <body>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</p>
 </nav>
 
-<div class="jumbotron" id="main-jumbo">
-    <div class="container-fluid text-center">
-        <h1 id="titre">BDE EXIA ARRAS</h1>
-    </div>
+<div class="navbar navbar-inverse">
+    <p href="#" class="navbar-brand mb-0">{{ activite.getNomActivite() }}</p>
 </div>
+
 <div>
     <h2 id="Activité">Activité : {{ activite.getNomActivite() }}</h2>
 </div>
 
 <div class="col-sm-6 col-md-6 col-lg-7">
-
-
-
-
-
-
-     <p>Description : </p>
-     <p>{{ activite.getDescriptionActivite }} </p> -->
+    <p>Description : </p>
+    <p>{{ activite.getDescriptionActivite }} </p> -->
 </div>
-
-
 
 
 <form action="" method="post">
     <input id="someSwitchOptionDanger10" name="inscription" type="checkbox"/>
-    <input type="submit" value="Je m'inscris" />
+    <input type="submit" value="Je m'inscris"/>
 </form>
 
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
-                <li><a href="">Mentions légales</a></li>
+                <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
@@ -56,8 +50,10 @@
     </div>
 </footer>
 
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
 
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

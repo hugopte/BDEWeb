@@ -2,20 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" sizes="144x144" href="Exia.png">
+    <title>Site Web du BDE</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
-    <link rel="icon" sizes="144x144" href="Exia.png">
-    <title>Site Web du BDE</title>
 </head>
+
+
 <body>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
 </nav>
 
-<div class="navbar navbar-inverse">
-    <p href="#" class="navbar-brand mb-0">Inscription</p>
+<div class="jumbotron" id="main-jumbo">
+    <div class="container-fluid text-center">
+        <h1 id="titre">BDE EXIA ARRAS</h1>
+    </div>
 </div>
 
 {{ text }}
