@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     {% block stylesheets %}
-<!--    <link rel="stylesheet" href="../../public/css/bootstrap.min.css" type="text/css"> -->
-<!--    <link rel="stylesheet" href="../../public/css/style.css" type="text/css"> -->
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -13,7 +11,7 @@
     <title>Site Web du BDE</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
 </nav>
 
@@ -58,12 +56,24 @@
     </div>
 </div>
 
+<footer>
+    <div  class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
+        <div class="container">
+            <ul class="nav navbar-nav pull-left">
+                <li><a href="#">Mentions légales</a> </li>
+                <li><a href="#">Contact</a> </li>
+                <li><a href="#">Support</a></li>
+            </ul>
+            <a href="#"><img src="Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+        </div>
+    </div>
+</footer>
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}
-<!-- <script src="../../public/js/jquery-3.2.0.min.js"></script>
-<script src="../../public/js/bootstrap.min.js"></script> -->
 </body>
 </html>
