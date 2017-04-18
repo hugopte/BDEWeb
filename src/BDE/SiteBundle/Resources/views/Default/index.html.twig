@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     {% block stylesheets %}
-    <link rel="stylesheet" href="../../public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../public/css/style.css">
+<!--    <link rel="stylesheet" href="../../public/css/bootstrap.min.css" type="text/css"> -->
+<!--    <link rel="stylesheet" href="../../public/css/style.css" type="text/css"> -->
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
     <link rel="icon" sizes="144x144" href="Exia.png">
     <title>Site Web du BDE</title>
@@ -55,7 +57,12 @@
     </div>
 </div>
 
-<script src="../../public/js/jquery-3.2.0.min.js"></script>
-<script src="../../public/js/bootstrap.min.js"></script>
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
+<!-- <script src="../../public/js/jquery-3.2.0.min.js"></script>
+<script src="../../public/js/bootstrap.min.js"></script> -->
 </body>
 </html>
