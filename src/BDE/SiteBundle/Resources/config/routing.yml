@@ -21,3 +21,9 @@ bde_site_layout_add:
 bde_site_layout_del:
     path:     /layout/del/{id}
     defaults: { _controller: BDESiteBundle:Layout:del }
+
+
+bde_site_layout_activite:
+    path:     /layout/activite/{id}
+    defaults: { _controller: BDESiteBundle:Layout:activite }
+

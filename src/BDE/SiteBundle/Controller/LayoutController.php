@@ -9,11 +9,12 @@
 namespace BDE\SiteBundle\Controller;
 
 use BDE\SiteBundle\Entity\activite;
+use BDE\SiteBundle\Entity\inscription;
 use BDE\SiteBundle\Entity\users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\DateTime;
+
 
 class LayoutController extends Controller
 {
@@ -84,7 +85,7 @@ class LayoutController extends Controller
             }
 
             else{
-                var_dump($Date);
+
                 $activite = new activite();
 
                 $activite->setNomActivite($NomActivite);
@@ -95,7 +96,7 @@ class LayoutController extends Controller
                 $em->persist($activite);
                 $em->flush();
 
-                $text =" Inscription réussi";
+                $text ="Inscription réussi";
                 return $this->render('BDESiteBundle:Default:SoumettreActivite.html.twig',array('text' =>$text));
 
 
@@ -108,6 +109,8 @@ class LayoutController extends Controller
 
 
     public function delAction(Request $request,$id){
+
+
         $this->VerifUser($request);
         $repository = $this
             ->getDoctrine()
@@ -155,6 +158,78 @@ class LayoutController extends Controller
         }
     }
 
+    public function activiteAction(Request $request, $id ){
+
+
+        if($request->isMethod('POST')){
+
+            $inscription = $request->request->get('inscription');
+
+
+
+        }
+        $this->VerifUser($request);
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:users');
+
+        $session = $request->getSession();
+        $users_id = $session->get('user_id');
+
+        $users = $repository->findOneBy(array('id_users' =>$users_id));
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:activite');
+
+
+        $activite =$repository->findOneBy(array('id_activite' =>$id));
+        $em = $this->getDoctrine()->getManager();
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:inscription');
+
+        if($request->isMethod('POST')){
+
+            $inscription = $request->request->get('inscription');
+
+
+            if($inscription ==true ){
+
+                $inscription = new inscription();
+
+                $inscription->setIdActivite($activite->getIdACtivite());
+
+
+                $inscription->setIdUsers($activite->getIdUsers());
+
+                $em->persist($inscription);
+
+                $em->flush();
+
+            }
+
+
+
+        }
+
+
+
+
+
+        //$query = $em->createQuery('SELECT u ,i  FROM BDESiteBundle:inscription i JOIN u.id_inscription i WHERE i.id_activite = :id');
+        //$query->setParameter('id', $activite->getIdActivite());
+        //$results = $query->getResult();
+        //var_dump($results);
+
+        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite));
+
+
+    }
+
 
 
 
@@ -168,7 +243,7 @@ class LayoutController extends Controller
         $session = $request->getSession();
 
 
-        if ($session->get('id_user') === 0) {
+        if ($session->get('id_user') == 0) {
 
 
             return $this->redirectToRoute('bde_site_homepage');
@@ -177,6 +252,14 @@ class LayoutController extends Controller
         }
 
 
+        if ($session->get('id_user')== null){
+            return $this->redirectToRoute('bde_site_homepage');
+        }
+
+
     }
+
+
+
 
 }

@@ -15,30 +15,29 @@ class commentaire
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
+
     private $id_commentaire;
-
-
     /**
      * @ORM\ManyToOne(targetEntity="users",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
      **/
-    private $id_users;
 
+    private $id_users;
     /**
      * @ORM\OneToOne(targetEntity="activite",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
      **/
+
     private $id_activite;
-
-
     /**
      * @ORM\Column(name="date_comment", type="date")
      */
-    private $date_comment;
 
+    private $date_comment;
     /**
      * @ORM\Column(name="text_comment", type="text")
      */
+
     private $text_Comment;
     /**
      * @return mixed

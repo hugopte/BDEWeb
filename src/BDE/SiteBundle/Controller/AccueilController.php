@@ -68,8 +68,7 @@ class AccueilController extends Controller
 
                 }
 
-                //if valide dans la table
-                //return $this->redirectToRoute('oc_platform_home');
+
 
 
 
