@@ -186,6 +186,10 @@ class LayoutController extends Controller
 
 
         $activite =$repository->findOneBy(array('id_activite' =>$id));
+
+        $id_activite = $activite->getIdActivite();
+
+        $id_users = $users->getIdUsers();
         $em = $this->getDoctrine()->getManager();
         $repository = $this
             ->getDoctrine()
@@ -194,17 +198,18 @@ class LayoutController extends Controller
 
         if($request->isMethod('POST')){
 
+
             $inscription = $request->request->get('inscription');
 
 
-            if($inscription ==true ){
+            if($inscription == 'on' ){
 
                 $inscription = new inscription();
 
-                $inscription->setIdActivite($activite->getIdACtivite());
+                $inscription->setIdActivite($activite);
 
 
-                $inscription->setIdUsers($activite->getIdUsers());
+                $inscription->setIdUsers($users);
 
                 $em->persist($inscription);
 

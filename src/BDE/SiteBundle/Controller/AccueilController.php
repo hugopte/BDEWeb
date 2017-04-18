@@ -79,6 +79,7 @@ class AccueilController extends Controller
         }
 
 
+
     }
 
 
@@ -128,7 +129,7 @@ class AccueilController extends Controller
                 $error = "Mot de passe non identique";
                 return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
             }*/
-            if ( $password != "" && $email != "" && $nom != "" && $prenom != "" ) {
+            if ( $password != null && $email != null && $nom != null && $prenom != null ) {
 
                 $repository = $this
                     ->getDoctrine()
@@ -148,19 +149,25 @@ class AccueilController extends Controller
                     return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
                 } else {
 
-                    $users = new users();
-                    $users->setEmailUsers($email);
-                    $users->setNomUsers($nom);
-                    $users->setPasswordUsers($password);
-                    $users->setRoleUsers('etudiant');
-                    $users->setPrenomUsers($prenom);
-                    $users->setAvatarUsers('yolo');
+                    if ($password != $Cpassword) {
+                        $error = "Mot de passe non identique" . $users->getEmailUsers();
+                        return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                    } else {
+
+                        $users = new users();
+                        $users->setEmailUsers($email);
+                        $users->setNomUsers($nom);
+                        $users->setPasswordUsers($password);
+                        $users->setRoleUsers('etudiant');
+                        $users->setPrenomUsers($prenom);
+                        $users->setAvatarUsers('yolo');
 
 
-                    $em->persist($users);
-                    $em->flush();
-                    $error = "Inscription de " . $users->getEmailUsers();
-                    return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                        $em->persist($users);
+                        $em->flush();
+                        $error = "Inscription de " . $users->getEmailUsers();
+                        return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
+                    }
                 }
 
             }

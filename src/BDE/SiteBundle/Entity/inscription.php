@@ -23,12 +23,12 @@ class inscription
 
 
     /**
-     * @ORM\OneToOne(targetEntity="users",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="users",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
      **/
     private $id_users;
     /**
-     * @ORM\OneToOne(targetEntity="activite",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="activite",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
      **/
 
