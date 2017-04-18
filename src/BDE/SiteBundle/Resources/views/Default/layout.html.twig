@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BDE</title>
+    <link rel="icon" sizes="144x144" href="Exia.png">
+</head>
+<header>
+    <p>Exia Cesi Arras</p>
+    <p>Bonjour {{ users.getNomUsers() }}</p>
+    <img src="avatar">
+    <p>Campus Activité BDE</p>
+</header>
+<body>
+<h1>BDE EXIA ARRAS</h1>
+<img src="keyexia">
+<img src="logoExia">
+
+
+
+
+{%for activite in activites%}
+<article>Activité : {{ activite.getNomActivite() }}
+    <img src="">
+    <p>Description de l'activité</p>
+    <P>{{ activite.getDescriptionActivite() }}</P>
+
+    <p>Date :{{ activite.getDateActivite()|date('d-m-Y') }} </p>
+    <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
+{% if users.getRoleUsers() == 'BDE' %}
+    <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+
+    {% elseif users.getRoleUsers() == 'Admin' %}
+
+        <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+
+
+    {% else %}
+    {% endif %}
+
+</article>
+{% endfor %}
+
+</body>
+
+<footer>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav navbar-nav pull-left">
+                <li><a href="#">Mentions légales</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+            <a href="#"><img src="Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
+            <a href="#"><img src="Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+        </div>
+    </div>
+</footer>
+
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</html>

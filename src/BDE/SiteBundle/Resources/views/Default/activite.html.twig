@@ -4,42 +4,73 @@
     <meta charset="UTF-8">
     <title>{{ activite.getNomActivite() }}</title>
     <link rel="icon" sizes="144x144" href="Exia.png">
-    {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    {% endblock %}
-    <link rel="icon" sizes="144x144" href="Exia.png">
-</head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
+</head>
 <body>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</p>
 </nav>
 
-<div class="navbar navbar-inverse">
-    <p href="#" class="navbar-brand mb-0">{{ activite.getNomActivite() }}</p>
+<div class="jumbotron" id="main-jumbo">
+    <div class="container-fluid text-center">
+        <h1 id="titre">BDE EXIA ARRAS</h1>
+    </div>
 </div>
-
 <div>
     <h2 id="Activité">Activité : {{ activite.getNomActivite() }}</h2>
 </div>
 
 <div class="col-sm-6 col-md-6 col-lg-7">
-    <p>Description : </p>
-    <p>{{ activite.getDescriptionActivite }} </p> -->
+
+
+<form action="" method="post">
+    <textarea name="Comment" rows="5" cols="10">Write your comment</textarea>
+</form>
+
+
+
+
+
+     <p>Description : </p>
+     <p>{{ activite.getDescriptionActivite }} </p> -->
 </div>
+
+
 
 
 <form action="" method="post">
     <input id="someSwitchOptionDanger10" name="inscription" type="checkbox"/>
-    <input type="submit" value="Je m'inscris"/>
+    <input type="submit" value="Je m'inscris" />
 </form>
 
+Participant:
+{% for inscrit in inscrits %}
+
+{{  inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }} </br>
+
+
+
+{% endfor %}
+
+
+
+
+{% for com in comment %}
+
+ {{ com.getIdUsers().getNomUsers() }}
+  {{ com.getIdUsers().getPrenomUsers() }}
+
+ {{ com.getTextComment() }}
+
+
+{% endfor %}
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
-                <li><a href="#">Mentions légales</a></li>
+                <li><a href="">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
@@ -50,10 +81,8 @@
     </div>
 </footer>
 
-{% block javascripts %}
-    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-{% endblock %}
 
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
