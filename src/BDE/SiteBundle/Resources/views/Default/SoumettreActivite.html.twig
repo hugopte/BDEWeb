@@ -44,6 +44,15 @@
             <input type="image" name="avatar" id="avatar" value="Image">
             <img src="#avatar">
         </div>
+
+        <form action="/upload-target" class="dropzone dz-clickable">
+            <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+            <div class="dz-message needsclick">
+                Drop files here or click to upload.<br>
+                <span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>
+            </div>
+        </form>
+
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'">Annuler
             </button>
@@ -72,6 +81,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/dropzone.js') }}"></script>
 {% endblock %}
 
 </body>
