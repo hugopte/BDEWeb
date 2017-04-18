@@ -46,16 +46,16 @@
         </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
-        <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
-        {% if users.getRoleUsers() == 'BDE' %}
-            <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+            <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
+            {% if users.getRoleUsers() == 'BDE' %}
+                <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
-        {% elseif users.getRoleUsers() == 'Admin' %}
+            {% elseif users.getRoleUsers() == 'Admin' %}
 
-            <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
+                <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
-        {% else %}
-        {% endif %}
+            {% else %}
+            {% endif %}
         </div>
 
     </article>
