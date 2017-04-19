@@ -36,11 +36,9 @@ class AccueilController extends Controller
 
                 $users = new users();
 
-
                 $users = $repository->findOneBy(
                     array('email_users' => $email)
                 );
-
 
                 if ($users == null) {
 
@@ -61,23 +59,19 @@ class AccueilController extends Controller
 
                 }
 
-
                 return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $email));
 
             }
+
             return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => "Bienvenue"));
         }
-
-
     }
 
 
     public function registerAction(Request $request)
     {
 
-
         $em = $this->getDoctrine()->getManager();
-
 
         if ($request->isMethod('POST')) {
             $password = $request->request->get('Password');
@@ -86,7 +80,6 @@ class AccueilController extends Controller
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
             $avatar = $request->request->get('icone');
-            var_dump($avatar);
 
 
             if ($password != null && $email != null && $nom != null && $prenom != null) {
@@ -122,21 +115,18 @@ class AccueilController extends Controller
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
 
-                        if (false) {
-                            $users->setAvatarUsers('yolo');
-                        } else {
-
-
+                        if($_POST['imgprofil']['error'] = 0)
+                        {
+                            $path = 'ressources\image\\'.$_POST['Nom'].$_POST['Prenom'];
+                            $resultatimage = move_uploaded_file($_FILES['imgprofil']['tmp_name'], $path);
+                            if ($resultatimage) echo "OK";
+                            $users->setAvatarUsers($avatar);
+                        }
+                        else{
+                            $users->setAvatarUsers("yolo");
                         }
 
-
-                        $users->setAvatarUsers($avatar);
-
-
                     }
-
-                    //
-
 
                     $em->persist($users);
                     $em->flush();
@@ -149,20 +139,14 @@ class AccueilController extends Controller
                 return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
 
             }
-        }
-
-
-        //requete GET
+        } //requete GET
         else {
 
             $error = "";
             return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
 
         }
-
     }
-
-
 }
 
 
