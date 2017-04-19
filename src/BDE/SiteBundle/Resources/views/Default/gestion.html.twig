@@ -11,19 +11,10 @@
 </head>
 
 <body>
-<header>
-    <p>Exia Cesi Arras</p>
-    <p>Bonjour </p>
 
-    <p>Campus Activité BDE</p>
-</header>
-
-<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
-
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/><a href="index.html.twig">Gestion des droits</a></p>
 </nav>
-
-<img src="keyexia">
-<img src="logoExia">
 
 <div class="navbar navbar-inverse">
     <p href="#" class="navbar-brand mb-0">Liste des utilisateurs</p>
@@ -32,21 +23,11 @@
 {% for user in users %}
 
     <article class="col-sm-4 col-md-4 col-lg-4">
-        <h3 class="col-sm-12 col-md-12 col-lg-12">{{ user.getNomUsers() }}  {{ user.getPrenomUsers() }}</br>{{ user.getEmailUsers() }}</h3>
 
-
-
+        <h3 class="col-sm-12 col-md-12 col-lg-12">{{ user.getNomUsers() }} {{ user.getPrenomUsers() }}</h3>
+        <h4>{{ user.getEmailUsers() }}</h4>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-
             <label>{{ user.getRoleUsers() }}</label>
-        </div>
-
-        <div class="col-sm-4 col-md-4 col-lg-4">
-
-        </div>
-
-
-
         </div>
 
     </article>
