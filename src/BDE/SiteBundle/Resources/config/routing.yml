@@ -19,9 +19,16 @@ bde_site_layout_add:
     defaults: { _controller: BDESiteBundle:Layout:add }
 
 bde_site_layout_del:
+    path:     /del/{id}
+    defaults: { _controller: BDESiteBundle:Layout:del }
+
+bde_site_layout_delete:
     path:     /layout/del/{id}
     defaults: { _controller: BDESiteBundle:Layout:del }
 
+bde_site_layout_activiteproposer:
+    path:     /layout/activite
+    defaults: { _controller: BDESiteBundle:Layout:activiteproposer }
 
 bde_site_layout_activite:
     path:     /layout/activite/{id}
@@ -30,6 +37,9 @@ bde_site_layout_activite:
 bde_site_gestion_user:
     path:     /gestion
     defaults: { _controller: BDESiteBundle:gestion:users }
+
+
+
 
 
 

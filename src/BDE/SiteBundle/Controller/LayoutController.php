@@ -104,7 +104,7 @@ class LayoutController extends Controller
                     $activite->setValidationActivite(false);
                 }
 
-                if($image->getError()== 0 ){
+                if($image!= null ){
                     $path = 'ressources/image/';
                     $nom = $NomActivite.$Date."img".'.png';
                     $resultatimage = $image->move($path,$nom);
@@ -353,6 +353,7 @@ class LayoutController extends Controller
 
 
 
+
     public function VerifUser(Request $request )
     {
         $session = $request->getSession();
@@ -378,6 +379,35 @@ class LayoutController extends Controller
     }
 
 
+
+    public function activiteproposerAction(Request $request){
+
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:users');
+
+        $session = $request->getSession();
+        $users_id = $session->get('user_id');
+
+        $users = $repository->findOneBy(array('id_users' =>$users_id));
+
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:activite');
+
+
+
+        $activite = $repository->findBy(array('validation_activite'=>false));
+
+
+
+        return $this->render('BDESiteBundle:Default:layout.html.twig', array('activites' => $activite,'users'=>$users));
+
+    }
 
 
 }
