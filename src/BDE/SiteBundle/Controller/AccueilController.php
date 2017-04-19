@@ -110,7 +110,7 @@ class AccueilController extends Controller
                         $users->setPrenomUsers($prenom);
 
 
-                        if ($avatar->getError() == 0) {
+                        if ($avatar != null) {
                             $path = 'ressources/image\\';
                             $nom = $nom . $prenom . '.png';
                             $resultatimage = $avatar->move($path, $nom);
