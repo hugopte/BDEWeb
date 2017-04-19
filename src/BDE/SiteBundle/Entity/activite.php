@@ -37,6 +37,12 @@ class activite
      */
     private $validation_activite;
 
+    /**
+     * @ORM\Column(name="url_img", type="string")
+     */
+
+    private $image;
+
 
     /**
      * @return mixed
@@ -116,6 +122,22 @@ class activite
     public function setValidationActivite($validation_activite)
     {
         $this->validation_activite = $validation_activite;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
     /**
      * @ORM\Column(name="id_activite", type="integer")

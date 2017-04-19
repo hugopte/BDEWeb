@@ -22,7 +22,7 @@
 
 {{ text }}
 <div class="col-sm-4 col-md-4 col-lg-4">
-    <form action="add" class="form-horizontal" method="post">
+    <form action="add" class="form-horizontal" method="post" enctype="multipart/form-data">
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label for="">Titre de l'activité: </label>
             <input type="text" class="form-control" id="titreactivite" name="NomActivite">
@@ -37,12 +37,12 @@
         </div>
       <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <p>Insérer une image:</p>
-            <button type="submit" class="btn btn-danger" onclick="self.location.href='activitypage.html'">Image</button>
+
 
         </div>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
-            <input type="image" name="avatar" id="avatar" value="Image">
-            <img src="#avatar">
+            <input type="file" name="img" id="img" value="Image">
+
         </div>
 
  <!--

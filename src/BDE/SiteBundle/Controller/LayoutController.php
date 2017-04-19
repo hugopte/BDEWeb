@@ -79,6 +79,7 @@ class LayoutController extends Controller
             $NomActivite = $request->request->get('NomActivite');
             $Description = $request->request->get('Description');
             $Date = $request->request->get('Date');
+            $image= $request->files->get('img');
 
             if ($NomActivite =="" ){
 
@@ -94,6 +95,18 @@ class LayoutController extends Controller
                 $activite->setDateActivite($Date);
                 $activite->setDescriptionActivite($Description);
                 $activite->setValidationActivite(true);
+
+
+                if($image->getError()== 0 ){
+                    $path = 'ressources\image\\';
+                    $nom = $NomActivite.$Date."img".'.png';
+                    $resultatimage = $image->move($path,$nom);
+
+                    $activite->setImage($nom);
+
+                }else{
+                    $activite->setImage("defaults.png");
+                }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($activite);
                 $em->flush();
