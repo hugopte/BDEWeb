@@ -122,14 +122,14 @@ class AccueilController extends Controller
 
                         if($avatar->getError()== 0 )
                         {
-                            $path = 'ressources\image\\';
+                            $path = 'ressources/image\\';
                             $nom = $nom.$prenom.'.png';
                             $resultatimage = $avatar->move($path,$nom);
 
-                            $users->setAvatarUsers($nom);
+                            $users->setAvatarUsers($path.$nom);
                         }
                         else{
-                            $users->setAvatarUsers("yolo");
+                            $users->setAvatarUsers('ressources/image/default.png');
                         }
 
                     }
