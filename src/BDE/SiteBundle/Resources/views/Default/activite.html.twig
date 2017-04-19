@@ -8,9 +8,9 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
-
 </head>
-<br>
+
+<body>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
     <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/><a href="index.html.twig">Campus Activité BDE</a></p>
 </nav>
@@ -26,44 +26,33 @@
 </div>
 
 <div class="col-sm-6 col-md-6 col-lg-7">
-
-
-     <p>Description : </p>
-     <p>{{ activite.getDescriptionActivite }} </p> -->
+    <p>Description :</p>
+    <p>{{ activite.getDescriptionActivite }}</p> -->
 </div>
 
 
 <form action="" method="post">
     <input id="someSwitchOptionDanger10" name="inscription" type="checkbox"/>
-    <input type="submit" value="Je m'inscris" />
+    <input type="submit" value="Je m'inscris"/>
     <input type="submit" value="Retour" onclick="self.location.href='index.html.twig'"/>
 </form>
 
-Participant:
+<label>Participant:</label>
+
 {% for inscrit in inscrits %}
-
-{{  inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }} </br>
-
-
-
+    {{ inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }}
 {% endfor %}
 
 
-
-
 {% for com in comment %}
-</br>
- {{ com.getIdUsers().getNomUsers() }}
-  {{ com.getIdUsers().getPrenomUsers() }}
-</br>
- {{ com.getTextComment() }}
-
-
+    {{ com.getIdUsers().getNomUsers() }}
+    {{ com.getIdUsers().getPrenomUsers() }}
+    {{ com.getTextComment() }}
 {% endfor %}
 
 <form action="" method="post">
     <textarea name="Comment" rows="5" cols="20">Ecrivez votre commentaire</textarea>
-    <button type="submit"  >Commentez</button>
+    <button type="submit">Commentez</button>
 </form>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -83,10 +72,10 @@ Participant:
 
 {% endfor %}
 <footer>
-    <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar navbar-inverse navbar-fixed-bottom" id="nav-bottom">
         <div class="container">
             <ul class="nav navbar-nav pull-left">
-                <li><a href="">Mentions légales</a></li>
+                <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
@@ -97,8 +86,10 @@ Participant:
     </div>
 </footer>
 
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{% endblock %}
 
-<script src="js/jquery-3.2.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
