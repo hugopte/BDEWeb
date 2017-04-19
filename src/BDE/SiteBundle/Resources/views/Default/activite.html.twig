@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <title>{{ activite.getNomActivite() }}</title>
     <link rel="icon" sizes="144x144" href="Photo/Exia.png">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% endblock %}
 
 </head>
 <br>
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
-    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</p>
+    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras <br/><a href="index.html.twig">Campus Activité BDE</a></p>
 </nav>
+
 
 <div class="jumbotron" id="main-jumbo">
     <div class="container-fluid text-center">
@@ -25,21 +28,15 @@
 <div class="col-sm-6 col-md-6 col-lg-7">
 
 
-
-
-
-
-
      <p>Description : </p>
      <p>{{ activite.getDescriptionActivite }} </p> -->
 </div>
 
 
-
-
 <form action="" method="post">
     <input id="someSwitchOptionDanger10" name="inscription" type="checkbox"/>
     <input type="submit" value="Je m'inscris" />
+    <input type="submit" value="Retour" onclick="self.location.href='index.html.twig'"/>
 </form>
 
 Participant:
@@ -68,6 +65,7 @@ Participant:
     <textarea name="Comment" rows="5" cols="20">Ecrivez votre commentaire</textarea>
     <button type="submit"  >Commentez</button>
 </form>
+
 
 <footer>
     <div class="navbar navbar-inverse navbar-fixed-bottom">

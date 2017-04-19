@@ -3,33 +3,35 @@ bde_site_homepage:
     defaults: { _controller: BDESiteBundle:Accueil:index }
 
 bde_site_login:
-    path:     /login
+    path:     bde_site_login
     defaults: { _controller: BDESiteBundle:Accueil:login }
 
 bde_site_register:
-    path:     /register
+    path:     bde_site_register
     defaults: { _controller: BDESiteBundle:Accueil:register }
 
 bde_site_layout:
-    path:     /layout
+    path:     bde_site_layout
     defaults: { _controller: BDESiteBundle:Layout:index }
 
 bde_site_layout_add:
-    path:     /layout/add
+    path:     bde_site_layout_add
     defaults: { _controller: BDESiteBundle:Layout:add }
 
 bde_site_layout_del:
-    path:     /layout/del/{id}
+    path:     bde_site_layout_del_{id}
     defaults: { _controller: BDESiteBundle:Layout:del }
 
 
 bde_site_layout_activite:
-    path:     /layout/activite/{id}
+    path:     bde_site_layout_activite_{id}
     defaults: { _controller: BDESiteBundle:Layout:activite }
 
 bde_site_gestion_user:
-    path:     /gestion
+    path:     bde_site_gestion_user
     defaults: { _controller: BDESiteBundle:gestion:users }
+
+
 
 
 
