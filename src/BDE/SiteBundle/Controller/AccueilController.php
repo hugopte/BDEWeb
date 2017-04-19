@@ -79,9 +79,13 @@ class AccueilController extends Controller
             $email = $request->request->get('Email');
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
-            $avatar = $request->request->get('icone');
 
 
+
+
+            $avatar = $request->files->get('imgprofil');
+
+            var_dump($avatar);
             if ($password != null && $email != null && $nom != null && $prenom != null) {
 
                 $repository = $this
@@ -116,20 +120,20 @@ class AccueilController extends Controller
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
 
-                        $imagerreur = $_POST['imgprofil']['error'];
-                        $imagepath = $_FILES['imgprofil']['tmp_name'];
-                        var_dump($imagerreur);
 
-                        if($imagerreur = 0)
+
+                        if($avatar = null)
                         {
-                            $path = '\BDEWeb\web\uploads\\'.$_POST['Nom'].$_POST['Prenom'];
-                            $resultatimage = move_uploaded_file($imagepath, $path);
-                            $users->setAvatarUsers($path);
+
+                            $users->setAvatarUsers('yolo.png');
                         }
                         else{
-                            $path = '\BDEWeb\web\uploads\\'."yolo.png";
-                            $users->setAvatarUsers($path);
+                            $path = '\BDEWeb\web\uploads\\';
+                            $avatarname = $nom.$prenom.'avatar.png';
+                            $file = $avatar->move($path, $avatarname );
+                            $users->setAvatarUsers($path.$avatarname);
                         }
+
                     }
 
                     $em->persist($users);
