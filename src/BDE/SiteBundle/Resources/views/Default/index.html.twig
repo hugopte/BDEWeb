@@ -76,6 +76,46 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% endblock %}
 
+<script type="text/javascript">
+
+    if ( window.addEventListener ) {
+        var kkeys = [], konami = "38,38,40,40,37,39,37,39,66,65";
+        window.addEventListener("keydown", function(e){
+            kkeys.push( e.keyCode );
+            if ( kkeys.toString().indexOf( konami ) >= 0 ) {
+
+                document.body.className = "maclasse";
+
+            }
+        }, true);
+    }
+
+</script>
+
+<style type="text/css">
+
+    @-webkit-keyframes roll {
+        from { -webkit-transform: rotate(0deg) }
+        to { -webkit-transform: rotate(360deg) }
+    }
+    @-moz-keyframes roll {
+        from { -moz-transform: rotate(0deg) }
+        to { -moz-transform: rotate(360deg) }
+    }
+    @keyframes roll {
+        from { transform: rotate(0deg) }
+        to   { transform: rotate(360deg) }
+    }
+    .maclasse {
+        -moz-animation-name: roll;
+        -moz-animation-duration: 4s;
+        -moz-animation-iteration-count: 1;
+        -webkit-animation-name: roll;
+        -webkit-animation-duration: 4s;
+        -webkit-animation-iteration-count: 1;
+    }
+
+</style>
 
 </body>
 </html>
