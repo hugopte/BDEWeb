@@ -11,6 +11,7 @@ namespace BDE\SiteBundle\Controller;
 use BDE\SiteBundle\Entity\activite;
 use BDE\SiteBundle\Entity\commentaire;
 use BDE\SiteBundle\Entity\inscription;
+use BDE\SiteBundle\Entity\photo;
 use BDE\SiteBundle\Entity\users;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -206,10 +207,6 @@ class LayoutController extends Controller
 
     public function activiteAction(Request $request, $id ){
         $em = $this->getDoctrine()->getManager();
-
-
-
-
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -217,18 +214,13 @@ class LayoutController extends Controller
 
         $session = $request->getSession();
         $users_id = $session->get('user_id');
-
         $users = $repository->findOneBy(array('id_users' =>$users_id));
         $repository = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('BDESiteBundle:activite');
-
-
         $activite =$repository->findOneBy(array('id_activite' =>$id));
-
         $id_activite = $activite->getIdActivite();
-
         $id_users = $users->getIdUsers();
         $em = $this->getDoctrine()->getManager();
         $repository = $this
@@ -243,6 +235,7 @@ class LayoutController extends Controller
 
             $inscription = $request->request->get('inscription');
             $comment = $request->request->get('Comment');
+            $img = $request->files->get('img');
 
 
 
@@ -279,6 +272,33 @@ class LayoutController extends Controller
 
             }
 
+            if($img != null){
+
+                var_dump($img);
+                $path = 'ressources/image/';
+
+
+                $nom = uniqid().'.png';
+
+
+                $img->move($path,$nom);
+
+
+
+
+                $photo = new photo();
+                $photo->setIdUsers($users->getIdUsers());
+                $photo->setIdActivite($activite->getIdActivite());
+                $photo->setUrlPhoto($path.$nom);
+                $photo->setAltPhoto("photo");
+
+
+                var_dump($photo);
+                $em->persist($photo);
+                $em->flush();
+
+            }
+
 
 
         }
@@ -302,9 +322,18 @@ class LayoutController extends Controller
         $commentaires = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
 
 
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:photo');
 
 
-        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires));
+        $photo = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
+
+
+
+
+        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires,'photos'=>$photo));
 
 
     }

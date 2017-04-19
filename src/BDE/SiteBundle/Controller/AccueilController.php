@@ -80,7 +80,7 @@ class AccueilController extends Controller
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
             $avatar = $request->files->get('imgprofil');
-            var_dump($avatar);
+
 
 
 
