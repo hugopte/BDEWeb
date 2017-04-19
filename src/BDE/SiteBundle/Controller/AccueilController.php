@@ -14,7 +14,6 @@ class AccueilController extends Controller
         return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => ""));
     }
 
-
     public function loginAction(Request $request)
     {
 
@@ -23,10 +22,8 @@ class AccueilController extends Controller
 
         if ($request->isMethod('POST')) {
 
-
             $email = $request->request->get('Email');
             $password = $request->request->get('Password');
-
 
             if ($password != "" && $email != "") {
                 $repository = $this
@@ -81,10 +78,6 @@ class AccueilController extends Controller
             $prenom = $request->request->get('Prenom');
             $avatar = $request->files->get('imgprofil');
 
-
-
-
-
             if ($password != null && $email != null && $nom != null && $prenom != null) {
 
                 $repository = $this
@@ -94,11 +87,9 @@ class AccueilController extends Controller
 
                 $users = new users();
 
-
                 $users = $repository->findOneBy(
                     array('email_users' => $email)
                 );
-
 
                 if ($users != null) {
                     $error = "Email deja utilisé";
@@ -119,16 +110,13 @@ class AccueilController extends Controller
                         $users->setPrenomUsers($prenom);
 
 
-
-                        if($avatar->getError()== 0 )
-                        {
+                        if ($avatar->getError() == 0) {
                             $path = 'ressources/image\\';
-                            $nom = $nom.$prenom.'.png';
-                            $resultatimage = $avatar->move($path,$nom);
+                            $nom = $nom . $prenom . '.png';
+                            $resultatimage = $avatar->move($path, $nom);
 
-                            $users->setAvatarUsers($path.$nom);
-                        }
-                        else{
+                            $users->setAvatarUsers($path . $nom);
+                        } else {
                             $users->setAvatarUsers('ressources/image/default.png');
                         }
 
@@ -154,5 +142,3 @@ class AccueilController extends Controller
         }
     }
 }
-
-

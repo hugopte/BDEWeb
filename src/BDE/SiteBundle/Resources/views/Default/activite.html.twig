@@ -39,16 +39,21 @@
 
 <label>Participant:</label>
 
+<div class="col-sm-6 col-md-6 col-lg-7">
 {% for inscrit in inscrits %}
     {{ inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }}
 {% endfor %}
+</div>
 
 
+<div class="col-sm-6 col-md-6 col-lg-7">
 {% for com in comment %}
     {{ com.getIdUsers().getNomUsers() }}
     {{ com.getIdUsers().getPrenomUsers() }}
     {{ com.getTextComment() }}
 {% endfor %}
+</div>
+
 
 <form action="" method="post">
     <textarea name="Comment" rows="5" cols="20">Ecrivez votre commentaire</textarea>
@@ -59,8 +64,6 @@
     <input type="file" name="img"/>
     <button type="submit" class="btn btn-danger">Valider
     </button>
-
-
 </form>
 
 
