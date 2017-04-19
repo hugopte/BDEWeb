@@ -333,6 +333,7 @@ class LayoutController extends Controller
 
 
 
+
         return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires,'photos'=>$photos));
 
 
