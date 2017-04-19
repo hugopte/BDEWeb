@@ -65,6 +65,14 @@
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
+                {% if users.getRoleUsers() == 'BDE' %}
+                <li><a href="layout/add">Soumettre activite</a></li>
+                {% elseif users.getRoleUsers() == 'Admin' %}
+                    <li><a href="layout/add">Soumettre activite</a></li>
+
+                 {% else %}
+                    <li><a href="layout/add">Proposer activite</a></li>
+                {% endif %}
             </ul>
             <a href="#"><img src="{{ asset('ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo" class="icons pull-right"></a>
             <a href="#"><img src=" {{ asset('ressources/Photo/twitter-icon.png') }}" alt="Twitter Logo" class="icons pull-right"></a>
