@@ -37,20 +37,19 @@
 
 {% for inscrit in inscrits %}
     <div class="col-sm-6 col-md-6 col-lg-7">
-    {{ inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }}
+        {{ inscrit.getIdUsers().getNomUsers() }} -- {{ inscrit.getIdUsers().getPrenomUsers() }}
     </div>
 {% endfor %}
 
 
-
 <div class="col-sm-6 col-md-6 col-lg-7">
-{% for com in comment %}
+    {% for com in comment %}
 
-<br>
-    {{ com.getIdUsers().getNomUsers() }}
-    {{ com.getIdUsers().getPrenomUsers() }}
-    {{ com.getTextComment() }}
-{% endfor %}
+        <br>
+        {{ com.getIdUsers().getNomUsers() }}
+        {{ com.getIdUsers().getPrenomUsers() }}
+        {{ com.getTextComment() }}
+    {% endfor %}
 </div>
 
 
@@ -64,7 +63,6 @@
     <button type="submit" class="btn btn-danger">Valider
     </button>
 </form>
-
 
 
 {% for photo in photos %}
