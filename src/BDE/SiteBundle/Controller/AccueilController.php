@@ -79,13 +79,12 @@ class AccueilController extends Controller
             $email = $request->request->get('Email');
             $nom = $request->request->get('Nom');
             $prenom = $request->request->get('Prenom');
-
-
-
-
             $avatar = $request->files->get('imgprofil');
-
             var_dump($avatar);
+
+
+
+
             if ($password != null && $email != null && $nom != null && $prenom != null) {
 
                 $repository = $this
@@ -109,8 +108,7 @@ class AccueilController extends Controller
                     if ($password != $Cpassword) {
                         $error = "Mot de passe non identique" . $users->getEmailUsers();
                         return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
-                    } else
-                        {
+                    } else {
 
                         $users = new users();
                         $users->setEmailUsers($email);
@@ -122,16 +120,16 @@ class AccueilController extends Controller
 
 
 
-                        if($avatar = null)
+                        if($avatar->getError()== 0 )
                         {
+                            $path = 'ressources\image\\';
+                            $nom = $nom.$prenom.'.png';
+                            $resultatimage = $avatar->move($path,$nom);
 
-                            $users->setAvatarUsers('yolo.png');
+                            $users->setAvatarUsers($nom);
                         }
                         else{
-                            $path = '\BDEWeb\web\uploads\\';
-                            $avatarname = $nom.$prenom.'avatar.png';
-                            $file = $avatar->move($path, $avatarname );
-                            $users->setAvatarUsers($path.$avatarname);
+                            $users->setAvatarUsers("yolo");
                         }
 
                     }
