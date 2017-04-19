@@ -117,13 +117,14 @@ class AccueilController extends Controller
 
                         if($_POST['imgprofil']['error'] = 0)
                         {
-                            $path = 'ressources\image\\'.$_POST['Nom'].$_POST['Prenom'];
+                            $path = '\BDEWeb\web\uploads\\'.$_POST['Nom'].$_POST['Prenom'];
                             $resultatimage = move_uploaded_file($_FILES['imgprofil']['tmp_name'], $path);
                             if ($resultatimage) echo "OK";
-                            $users->setAvatarUsers($avatar);
+                            $users->setAvatarUsers($path);
                         }
                         else{
-                            $users->setAvatarUsers("yolo");
+                            $path = '\BDEWeb\web\uploads\\'."yolo.png";
+                            $users->setAvatarUsers($path);
                         }
 
                     }
