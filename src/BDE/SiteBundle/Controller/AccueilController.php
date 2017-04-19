@@ -105,7 +105,8 @@ class AccueilController extends Controller
                     if ($password != $Cpassword) {
                         $error = "Mot de passe non identique" . $users->getEmailUsers();
                         return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
-                    } else {
+                    } else
+                        {
 
                         $users = new users();
                         $users->setEmailUsers($email);
@@ -115,18 +116,20 @@ class AccueilController extends Controller
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
 
-                        if($_POST['imgprofil']['error'] = 0)
+                        $imagerreur = $_POST['imgprofil']['error'];
+                        $imagepath = $_FILES['imgprofil']['tmp_name'];
+                        var_dump($imagerreur);
+
+                        if($imagerreur = 0)
                         {
                             $path = '\BDEWeb\web\uploads\\'.$_POST['Nom'].$_POST['Prenom'];
-                            $resultatimage = move_uploaded_file($_FILES['imgprofil']['tmp_name'], $path);
-                            if ($resultatimage) echo "OK";
+                            $resultatimage = move_uploaded_file($imagepath, $path);
                             $users->setAvatarUsers($path);
                         }
                         else{
                             $path = '\BDEWeb\web\uploads\\'."yolo.png";
                             $users->setAvatarUsers($path);
                         }
-
                     }
 
                     $em->persist($users);
