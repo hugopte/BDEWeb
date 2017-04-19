@@ -11,6 +11,10 @@ class AccueilController extends Controller
 {
     public function indexAction()
     {
+
+
+
+
         return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => ""));
     }
 
