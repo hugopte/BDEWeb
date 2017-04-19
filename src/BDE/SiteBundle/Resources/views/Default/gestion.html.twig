@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>BDE</title>
     <link rel="icon" sizes="144x144" href="Photo/Exia.png">
     {% block stylesheets %}
@@ -23,13 +24,11 @@
 {% for user in users %}
 
     <article class="col-sm-4 col-md-4 col-lg-4">
-
         <h3 class="col-sm-12 col-md-12 col-lg-12">{{ user.getNomUsers() }} {{ user.getPrenomUsers() }}</h3>
         <h4>{{ user.getEmailUsers() }}</h4>
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label>{{ user.getRoleUsers() }}</label>
         </div>
-
     </article>
 
 {% endfor %}
