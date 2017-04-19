@@ -18,7 +18,7 @@ class photo
     private $id_photo;
 
     /**
-     * @ORM\OneToOne(targetEntity="users",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="users",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
      **/
     private $id_users;

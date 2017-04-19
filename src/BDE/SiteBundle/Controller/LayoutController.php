@@ -274,7 +274,7 @@ class LayoutController extends Controller
 
             if($img != null){
 
-                var_dump($img);
+
                 $path = 'ressources/image/';
 
 
@@ -293,7 +293,7 @@ class LayoutController extends Controller
                 $photo->setAltPhoto("photo");
 
 
-                var_dump($photo);
+
                 $em->persist($photo);
                 $em->flush();
 

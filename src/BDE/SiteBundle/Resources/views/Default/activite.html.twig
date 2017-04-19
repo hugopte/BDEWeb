@@ -68,7 +68,7 @@
 {% for photo in photos %}
 
     auteur:{{ photo.getIdUsers().getNomUsers() }}
-    <img src="{{ photo.getUrlPhoto() }} alt="{{ photo.getAltPhoto() }}">
+    <img src="{{ asset(photo.getUrlPhoto()) }}" alt="{{ photo.getAltPhoto() }}">
 
 {% endfor %}
 <footer>
