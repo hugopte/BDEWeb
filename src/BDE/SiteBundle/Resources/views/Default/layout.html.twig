@@ -71,12 +71,12 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
             </ul>
-            <a href="#"><img src="/web/ressources/Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
-            <a href="#"><img src="/web/ressources/Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
-            <a href="#"><img src="/web/ressources/Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+            <a href="#"><img src="{{ asset('/web/ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo" class="icons pull-right"></a>
+            <a href="#"><img src="{{ asset('/web/ressources/Photo/twitter-icon.png') }}" alt="Twitter Logo" class="icons pull-right"></a>
+            <a href="#"><img src="{{ asset('/web/ressources/Photo/youtube-icon.png') }}" alt="Youtube Logo" class="icons pull-right"></a>
         </div>
     </div>
-</footer>
+</footer>{{ asset('/web/ressources/Photo/facebook-icon.png') }}
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
