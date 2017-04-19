@@ -14,7 +14,7 @@
 <header>
     <p>Exia Cesi Arras</p>
     <p>Bonjour {{ users.getNomUsers() }}</p>
-    <img src=" ressources\image\{{users.getAvatarUsers()}}">
+    <img src="ressources\image\{{users.getAvatarUsers()}}" id="avatar" alt ="avatar">
     <p>Campus Activité BDE</p>
 </header>
 
@@ -34,7 +34,7 @@
     <article class="col-sm-4 col-md-4 col-lg-4">
         <h3 class="col-sm-12 col-md-12 col-lg-12">{{ activite.getNomActivite() }}</h3>
         <img src="">
-        <a href="#" class="col-sm-3 col-md-3 col-lg-3"><img src="Photo/Exia.png" alt="like" class="like"></a>
+        <a href="#" class="col-sm-3 col-md-3 col-lg-3"><img src="ressource\image\{{ activite.getImage() }}" alt="activite" class="activite"></a>
 
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label>Description de l'activité</label>
@@ -46,6 +46,7 @@
         </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
+
             <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
             {% if users.getRoleUsers() == 'BDE' %}
                 <a href="layout/del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
