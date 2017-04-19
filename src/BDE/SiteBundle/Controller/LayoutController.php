@@ -287,8 +287,8 @@ class LayoutController extends Controller
 
 
                 $photo = new photo();
-                $photo->setIdUsers($users->getIdUsers());
-                $photo->setIdActivite($activite->getIdActivite());
+                $photo->setIdUsers($users);
+                $photo->setIdActivite($activite);
                 $photo->setUrlPhoto($path.$nom);
                 $photo->setAltPhoto("photo");
 
@@ -328,12 +328,12 @@ class LayoutController extends Controller
             ->getRepository('BDESiteBundle:photo');
 
 
-        $photo = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
+        $photos = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
 
 
 
 
-        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires,'photos'=>$photo));
+        return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires,'photos'=>$photos));
 
 
     }
