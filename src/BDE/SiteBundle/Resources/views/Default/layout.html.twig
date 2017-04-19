@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
-    <p href="#" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
+    <p href="layout" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</p>
     <div class="container">
         <img src="{{ asset( users.getAvatarUsers()) }}" class="pull-right avatar">
         <p class="pull-right name-nav">Bonjour {{ users.getPrenomUsers() }}</p>
@@ -23,6 +23,7 @@
 
 <div class="navbar navbar-inverse">
     <p href="#" class="navbar-brand mb-0">Liste activités</p>
+    <a href="layout/activite" class="navbar-brand mb-0"> Activité proposée </a>
 </div>
 
 {% for activite in activites %}
@@ -42,13 +43,13 @@
         </div>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
-            <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank">Details</a>
+            <a href="layout/activite/{{ activite.getIdActivite() }}" target="_blank">Details</a>
             {% if users.getRoleUsers() == 'BDE' %}
-                <a href="layout/del/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank"> Supprimer </a>
+                <a href="del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
             {% elseif users.getRoleUsers() == 'Admin' %}
 
-                <a href="layout/del/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank"> Supprimer </a>
+                <a href="del/{{ activite.getIdActivite() }}" target="_blank"> Supprimer </a>
 
             {% else %}
             {% endif %}
@@ -64,6 +65,14 @@
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
+                {% if users.getRoleUsers() == 'BDE' %}
+                <li><a href="layout/add">Soumettre activite</a></li>
+                {% elseif users.getRoleUsers() == 'Admin' %}
+                    <li><a href="layout/add">Soumettre activite</a></li>
+
+                 {% else %}
+                    <li><a href="layout/add">Proposer activite</a></li>
+                {% endif %}
             </ul>
             <a href="#"><img src="{{ asset('ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo"
                              class="icons pull-right"></a>
