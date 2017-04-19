@@ -47,7 +47,7 @@ class AccueilController extends Controller
                     $error = "Email invalide";
                     return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
                 } else {
-                    if ($password == $users->getPasswordUsers()) {
+                    if (password_verify($password, $users->getPasswordUsers())) {
 
 
                         $session->set('user_id', $users->getIdUsers());
@@ -117,6 +117,7 @@ class AccueilController extends Controller
                         $users = new users();
                         $users->setEmailUsers($email);
                         $users->setNomUsers($nom);
+                        $password = password_hash($password, PASSWORD_BCRYPT);
                         $users->setPasswordUsers($password);
                         $users->setRoleUsers('etudiant');
                         $users->setPrenomUsers($prenom);
