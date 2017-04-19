@@ -289,10 +289,7 @@ class LayoutController extends Controller
         $commentaires = $repository->findBy(array('id_activite'=>$activite->getIdActivite()));
 
 
-        //$query = $em->createQuery('SELECT u ,i  FROM BDESiteBundle:inscription i JOIN u.id_inscription i WHERE i.id_activite = :id');
-        //$query->setParameter('id', $activite->getIdActivite());
-        //$results = $query->getResult();
-        //var_dump($results);
+
 
         return $this->render('BDESiteBundle:Default:activite.html.twig',array('activite' =>$activite,'inscrits'=>$inscrit,'comment'=>$commentaires));
 
