@@ -50,6 +50,8 @@
 
 <div class="col-sm-6 col-md-6 col-lg-7">
 {% for com in comment %}
+
+<br>
     {{ com.getIdUsers().getNomUsers() }}
     {{ com.getIdUsers().getPrenomUsers() }}
     {{ com.getTextComment() }}
