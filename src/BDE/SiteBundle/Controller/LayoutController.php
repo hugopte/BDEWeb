@@ -98,14 +98,14 @@ class LayoutController extends Controller
 
 
                 if($image->getError()== 0 ){
-                    $path = 'ressources\image\\';
+                    $path = 'ressources/image/';
                     $nom = $NomActivite.$Date."img".'.png';
                     $resultatimage = $image->move($path,$nom);
 
-                    $activite->setImage($nom);
+                    $activite->setImage($path.$nom);
 
                 }else{
-                    $activite->setImage("defaults.png");
+                    $activite->setImage("ressources/images/defaults.png");
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($activite);
