@@ -111,3 +111,13 @@ body{
 .image-activite{
     padding-bottom: 5%;
 }
+
+.avatar{
+    width: 50px;
+    margin-top: 1%;
+}
+
+.name-nav{
+    margin-top: 2%;
+    margin-right: 1%;
+}
