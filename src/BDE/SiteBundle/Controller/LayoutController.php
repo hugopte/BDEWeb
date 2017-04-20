@@ -96,6 +96,7 @@ class LayoutController extends Controller
                 $activite->setNomActivite($NomActivite);
                 $activite->setDateActivite($Date);
                 $activite->setDescriptionActivite($Description);
+                $activite->setNbrVote('0');
                 if($users->getRoleUsers() == 'BDE') {
                     $activite->setValidationActivite(true);
                 }
@@ -404,6 +405,7 @@ class LayoutController extends Controller
 
 
         $activite = $repository->findBy(array('validation_activite'=>false));
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -440,6 +442,10 @@ class LayoutController extends Controller
 
 
         }
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:activite');
 
         $activite = $repository->findBy(array('validation_activite'=>false));
 
@@ -462,7 +468,7 @@ class LayoutController extends Controller
         return $this->render('BDESiteBundle:Default:boutique.html.twig', array('boutique' => $article));
 
     }
-    public function addarticleAction(Request $request)
+   public function addarticleAction(Request $request)
 
     {
         if ($request->isMethod('Get')) {
