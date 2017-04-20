@@ -115,7 +115,7 @@ class LayoutController extends Controller
                     $activite->setImage($path.$nom);
 
                 }else{
-                    $activite->setImage("ressources/images/defaults.png");
+                    $activite->setImage("ressources/image/defaults.png");
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($activite);
@@ -417,10 +417,13 @@ class LayoutController extends Controller
             foreach ($votes as $vt) {
                 $i++;
             }
+
+
             $act->setNbrVote($i);
 
 
         }
+
         if($vote != null){
             $repository = $this
                 ->getDoctrine()
@@ -428,13 +431,9 @@ class LayoutController extends Controller
                 ->getRepository('BDESiteBundle:activite');
             $activite = $repository->findOneBy(array("id_activite"=> $vote));
 
-
             $vt = new vote();
-
-
             $vt->setIdUsers($users);
             $vt->setIdActivite($activite);
-
             $em->persist($vt);
 
             $em->flush();
