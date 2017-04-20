@@ -126,3 +126,7 @@ body{
     width: 20%;
     margin: auto;
 }
+
+.description-activite{
+    overflow-wrap: break-word;
+}
