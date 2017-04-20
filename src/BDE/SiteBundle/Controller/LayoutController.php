@@ -23,19 +23,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LayoutController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request) //controlleur page principale
     {
 
 
         $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('BDESiteBundle:users');
+            ->getRepository('BDESiteBundle:users');    //on recupere  le dossierdes userss
 
         $session = $request->getSession();
-        $users_id = $session->get('user_id');
+        $users_id = $session->get('user_id');       //on recupere l'id de l'utilisateur dans la variable de session
 
-        $users = $repository->findOneBy(array('id_users' =>$users_id));
+        $users = $repository->findOneBy(array('id_users' =>$users_id));   //on recupere le user dans la bdd
 
 
             $repository = $this
@@ -45,7 +45,7 @@ class LayoutController extends Controller
 
 
 
-            $activite = $repository->findBy(array('validation_activite'=>true));
+            $activite = $repository->findBy(array('validation_activite'=>true));    //on recupere un tableau des activites valider
 
 
 
@@ -55,18 +55,18 @@ class LayoutController extends Controller
     }
 
 
-    public function addAction(Request $request)
+    public function addAction(Request $request)   //controlleur ajouté activité
     {
 
 
 
 
-        if ($request->isMethod('GET')) {
+        if ($request->isMethod('GET')) {     //si la methode est get on retourne juste la page
 
             return $this->render('BDESiteBundle:Default:SoumettreActivite.html.twig',array('text' =>''));
         }
 
-        else{
+        else{                                       //methode post
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
@@ -77,18 +77,18 @@ class LayoutController extends Controller
             $users = $repository->findOneBy(array('id_users' =>$users_id));
 
 
-            $NomActivite = $request->request->get('NomActivite');
+            $NomActivite = $request->request->get('NomActivite');    //on recupere les variables rentré dans le formulaire
             $Description = $request->request->get('Description');
             $Date = $request->request->get('Date');
             $image= $request->files->get('img');
 
-            if ($NomActivite =="" ){
+            if ($NomActivite =="" ){                                   //on verifie que l'utilisateut a mis un nom sinon on lui retourne la page avec un msg d'erreur
 
                 $text = "Remplissage incorrect";
                 return $this->render('BDESiteBundle:Default:SoumettreActivite.html.twig',array('text' =>$text));
             }
 
-            else{
+            else{         //on créé une activité si le remplissage est correcte
 
 
                 $activite = new activite();
@@ -97,7 +97,7 @@ class LayoutController extends Controller
                 $activite->setDateActivite($Date);
                 $activite->setDescriptionActivite($Description);
                 $activite->setNbrVote('0');
-                if($users->getRoleUsers() == 'BDE') {
+                if($users->getRoleUsers() == 'BDE') {          //on definit l'activité validé ou non n fonction du role de l'utilisateur
                     $activite->setValidationActivite(true);
                 }
                 elseif ($users->getRoleUsers() == 'admin') {
@@ -107,21 +107,21 @@ class LayoutController extends Controller
                     $activite->setValidationActivite(false);
                 }
 
-                if($image!= null ){
+                if($image!= null ){                        //Si l'utilisateur a rentré une image on l'enregistre dans le serveur et le chemin dans la bdd
                     $path = 'ressources/image/';
                     $nom = $NomActivite.$Date."img".'.png';
                     $resultatimage = $image->move($path,$nom);
 
                     $activite->setImage($path.$nom);
 
-                }else{
+                }else{                                    //sinon on enregistre une image par default
                     $activite->setImage("ressources/image/defaults.png");
                 }
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($activite);
                 $em->flush();
 
-                $text ="Inscription réussi";
+                $text ="Inscription réussi";            //on affiche un msg pour l'inscription réussi
                 return $this->render('BDESiteBundle:Default:SoumettreActivite.html.twig',array('text' =>$text));
 
 
@@ -140,7 +140,7 @@ class LayoutController extends Controller
         $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('BDESiteBundle:users');
+            ->getRepository('BDESiteBundle:users');   //recuperation user
 
         $session = $request->getSession();
         $users_id = $session->get('user_id');
@@ -153,8 +153,7 @@ class LayoutController extends Controller
 
 
 
-        if($users->getRoleUsers() =='etudiant' ){
-
+        if($users->getRoleUsers() =='etudiant' ){         //verification des droits
             return new Response("Erreur vous n'avez pas les droits ");
 
         }
@@ -166,36 +165,36 @@ class LayoutController extends Controller
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('BDESiteBundle:commentaire');
+                ->getRepository('BDESiteBundle:commentaire'); //on recupere les commentaires lié a l'activité
             $commentaires = $repository->findBy(array('id_activite' =>$id));
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
                 ->getRepository('BDESiteBundle:inscription');
-            $inscriptions = $repository->findBy(array('id_activite' =>$id));
+            $inscriptions = $repository->findBy(array('id_activite' =>$id));  // """""" les inscriptions
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
                 ->getRepository('BDESiteBundle:photo');
-            $photos = $repository->findBy(array('id_activite' =>$id));
+            $photos = $repository->findBy(array('id_activite' =>$id));         //les photos
 
 
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
                 ->getRepository('BDESiteBundle:vote');
-            $votes = $repository->findBy(array('id_activite' =>$id));
+            $votes = $repository->findBy(array('id_activite' =>$id));     //les votes
 
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('BDESiteBundle:activite');
+                ->getRepository('BDESiteBundle:activite');      //et on recupere l'activité avec l'id que l'on donne dans l'url
 
 
             $activite = $repository->findOneBy(array('id_activite' =>$id));
 
 
-            foreach ($commentaires as $commentaire){$em->remove($commentaire);}
+            foreach ($commentaires as $commentaire){$em->remove($commentaire);}  //on supprime tout les élèments recupérés
 
             foreach ($inscriptions as $inscription){$em->remove($inscription);}
             foreach ($photos as $photo){$em->remove($photo);}
