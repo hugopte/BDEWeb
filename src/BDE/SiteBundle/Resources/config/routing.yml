@@ -36,8 +36,11 @@ bde_site_layout_activite:
 
 bde_site_gestion_user:
     path:     /gestion
-    defaults: { _controller: BDESiteBundle:gestion:users }
+    defaults: { _controller: BDESiteBundle:gestion:users}
 
+bde_site_gestion_boutique:
+    path:     /layout/boutique
+    defaults: { _controller: BDESiteBundle:Layout:boutique}
 
 
 

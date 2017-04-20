@@ -27,6 +27,11 @@ class boutique
      */
     private $prixArticle;
 
+    /**
+     * @ORM\Column(name="Image_article", type="text")
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -83,4 +88,21 @@ class boutique
     {
         return $this->prixArticle;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
 }

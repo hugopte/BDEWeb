@@ -14,7 +14,7 @@
 <body>
 
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
-    <a href="layout" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</a>
+    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</a>
     <div class="container">
         <img src="{{ asset( users.getAvatarUsers()) }}" class="pull-right avatar">
         <p class="pull-right name-nav">Bonjour {{ users.getPrenomUsers() }}</p>
@@ -22,8 +22,8 @@
 </nav>
 
 <div class="navbar navbar-inverse">
-    <p href="#" class="navbar-brand mb-0">Liste activités</p>
-    <a href="layout/activite" class="navbar-brand mb-0"> Activité proposée </a>
+    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Liste activités</a>
+    <a href="{{ path('bde_site_layout_activiteproposer')}}" class="navbar-brand mb-0"> Activité proposée </a>
 </div>
 
 <div class="container-fluid">
@@ -60,13 +60,14 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
                 {% if users.getRoleUsers() == 'BDE' %}
-                <li><a href="layout/add">Soumettre activite</a></li>
+                <li><a href="{{ path('bde_site_layout_add')}}">Soumettre activite</a></li>
                 {% elseif users.getRoleUsers() == 'Admin' %}
-                    <li><a href="layout/add">Soumettre activite</a></li>
+                    <li><a href="{{ path('bde_site_layout_add')}}">Soumettre activite</a></li>
 
                  {% else %}
-                    <li><a href="layout/add">Proposer activite</a></li>
+                    <li><a href="{{ path('bde_site_layout_add')}}">Proposer activite</a></li>
                 {% endif %}
+                <li><a href="{{ path('bde_site_gestion_boutique')}}">Boutique</a></li>
             </ul>
             <a href="#"><img src="{{ asset('ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo"
                              class="icons pull-right"></a>
