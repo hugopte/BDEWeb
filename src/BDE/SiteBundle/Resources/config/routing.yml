@@ -42,6 +42,10 @@ bde_site_gestion_boutique:
     path:     /layout/boutique
     defaults: { _controller: BDESiteBundle:Layout:boutique}
 
+bde_site_MLegales:
+    path:     /MentionsLegales
+    defaut:   {_controler: BDESiteBundle:MentionsLegales}
+
 
 
 
