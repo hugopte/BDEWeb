@@ -145,9 +145,9 @@ class AccueilController extends Controller
 
         }
     }
-    public function MentionslegalesActions()
+    public function mentionAction()
     {
-        return  $this->render('MentionsLegales.html.twig');
+        return  $this->render('BDESiteBundle:Default:MentionsLegales.html.twig');
     }
 
 }

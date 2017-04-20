@@ -43,8 +43,8 @@ bde_site_gestion_boutique:
     defaults: { _controller: BDESiteBundle:Layout:boutique}
 
 bde_site_mentionslegales:
-    path:     /mentionslegales
-    defaut:   {_controler: BDESiteBundle:Accueil:Mentionslegales}
+    path:     /mentions
+    defaults: { _controller: BDESiteBundle:Accueil:mention }
 
 
 
