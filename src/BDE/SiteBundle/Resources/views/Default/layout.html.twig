@@ -38,6 +38,12 @@
     <p><strong>Date: </strong>{{ activite.getDateActivite()|date('d-m-Y') }}</p>
     {% if activite.getValidationActivite() == true %}
     <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank">Details</a>
+        {% else %}
+        Vote:{{ activite.getNbrVote() }}
+        <form action="" method="post">
+
+            <button type="submit" name="vote" value="{{ activite.getIdActivite() }}" >Je vote !</button>
+        </form>
     {% endif %}
     {% if users.getRoleUsers() == 'BDE' %}
         <a href="del/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank"> Supprimer </a>

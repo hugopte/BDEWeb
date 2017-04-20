@@ -9,7 +9,10 @@
 namespace BDE\SiteBundle\Controller;
 
 use BDE\SiteBundle\Entity\activite;
+use BDE\SiteBundle\Entity\boutique;
 use BDE\SiteBundle\Entity\commentaire;
+use BDE\SiteBundle\Entity\vote;
+
 use BDE\SiteBundle\Entity\inscription;
 use BDE\SiteBundle\Entity\photo;
 use BDE\SiteBundle\Entity\users;
@@ -227,7 +230,7 @@ class LayoutController extends Controller
         $activite =$repository->findOneBy(array('id_activite' =>$id));
         $id_activite = $activite->getIdActivite();
         $id_users = $users->getIdUsers();
-        $em = $this->getDoctrine()->getManager();
+
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -381,7 +384,7 @@ class LayoutController extends Controller
 
     public function activiteproposerAction(Request $request){
 
-
+        $em = $this->getDoctrine()->getManager();
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -389,7 +392,7 @@ class LayoutController extends Controller
 
         $session = $request->getSession();
         $users_id = $session->get('user_id');
-
+        $vote = $request->get('vote');
         $users = $repository->findOneBy(array('id_users' =>$users_id));
 
 
@@ -399,6 +402,44 @@ class LayoutController extends Controller
             ->getRepository('BDESiteBundle:activite');
 
 
+
+        $activite = $repository->findBy(array('validation_activite'=>false));
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:vote');
+            $i=0;
+        foreach ($activite as $act) {
+
+            $votes = $repository->findBy(array('id_activite' => $act));
+            foreach ($votes as $vt) {
+                $i++;
+            }
+            $act->setNbrVote($i);
+
+
+        }
+        if($vote != null){
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:activite');
+            $activite = $repository->findOneBy(array("id_activite"=> $vote));
+
+
+            $vt = new vote();
+
+
+            $vt->setIdUsers($users);
+            $vt->setIdActivite($activite);
+
+            $em->persist($vt);
+
+            $em->flush();
+
+
+
+        }
 
         $activite = $repository->findBy(array('validation_activite'=>false));
 
@@ -425,38 +466,40 @@ class LayoutController extends Controller
 
     {
         if ($request->isMethod('Get')) {
-            Return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig')
-        } else {
+            Return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig',array('text'=>''));
+        }
+        else {
 
             $repository = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('BDESiteBundle:Default:boutique');
+                ->getRepository('BDESiteBundle:users');
 //Prise de l'utilisateur
             $session = $request->getSession();
             $users_id = $session->get('user_id');
             $users = $repository->findOneBy(array('id_users' => $users_id));
 
 
-            $NomArticle = $request->request->get('nomArticle');
-            $Description = $request->request->get('Description');
-            $Prix = $request->request->get('PrixArticle');
+            $NomArticle = $request->request->get('NomActivite');
+
+
+            $Prix = $request->request->get('price');
             $image = $request->files->get('image');
+            if ($users->getRoleUsers() == 'Admin') {
+                if ($NomArticle == "") {
 
-            if ($NomArticle == "") {
+                    $text = "Remplissage incorrect";
+                    return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig', array('text' => $text));
 
-                $text = "Remplissage incorrect";
-                return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig', array('text' => $text));
 
-                if ($users->getRoleUsers() == 'Admin') {
 
                 } else {
 
-                    $acticle = new article();
+                    $article = new boutique();
 
-                    $acticle->setNomArticle($NomArticle);
-                    $acticle->setPrixArticle($Prix);
-                    $acticle->setDescriptionArticle($Description);
+                    $article->setNomArticle($NomArticle);
+                    $article->setPrixArticle($Prix);
+
 
 
                     if ($image != null) {
@@ -464,7 +507,7 @@ class LayoutController extends Controller
                         $nom = $NomArticle . $Prix . "img" . '.png';
                         $resultatimage = $image->move($path, $nom);
 
-                        $acticle->setImage($path . $nom);
+                        $article->setImage($path . $nom);
 
                     } else {
                         $article->setImage("ressources/images/defaults.png");
@@ -474,13 +517,13 @@ class LayoutController extends Controller
                     $em->persist($article);
                     $em->flush();
 
-                    $text = "Article ajouté";
+
                     return $this->redirectToRoute("bde_site_gestion_boutique");
 
 
                 }
             }
-            return new Response('Vous /n avez pas les droits' );
+            else {return new Response('Vous /n avez pas les droits' );}
         }
     }
 }

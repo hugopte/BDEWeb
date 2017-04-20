@@ -17,23 +17,19 @@ class vote
      */
     private $id_vote;
     /**
-     * @ORM\OneToOne(targetEntity="users",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="users",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_users",referencedColumnName="id_users")
      **/
 
     private $id_users;
 
     /**
-     * @ORM\OneToOne(targetEntity="activite",cascade={"persist"} )
+     * @ORM\ManyToOne(targetEntity="activite",cascade={"persist"} )
      * @ORM\JoinColumn(name="id_activite",referencedColumnName="id_activite")
      **/
     private $id_activite;
 
 
-    /**
-     * @ORM\Column(name="vote", type="boolean")
-     */
-    private $vote;
 
     /**
      * @return mixed
@@ -98,6 +94,11 @@ class vote
     {
         $this->id_activite = $id_activite;
     }
+
+    /**
+     * @return mixed
+     */
+
 
 
 }

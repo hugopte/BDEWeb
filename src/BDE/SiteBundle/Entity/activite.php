@@ -42,6 +42,10 @@ class activite
      */
 
     private $image;
+    /**
+     * @ORM\Column(name="nb_vote", type="integer")
+     */
+    private $nbrVote;
 
 
     /**
@@ -138,6 +142,22 @@ class activite
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNbrVote()
+    {
+        return $this->nbrVote;
+    }
+
+    /**
+     * @param mixed $nbrVote
+     */
+    public function setNbrVote($nbrVote)
+    {
+        $this->nbrVote = $nbrVote;
     }
     /**
      * @ORM\Column(name="id_activite", type="integer")
