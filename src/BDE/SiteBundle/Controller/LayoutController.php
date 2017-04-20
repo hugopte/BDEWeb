@@ -410,4 +410,16 @@ class LayoutController extends Controller
     }
 
 
+    public function boutiqueAction(Request $request){
+
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('BDESiteBundle:boutique');
+
+        $article=$repository->findAll();
+
+        return $this->render('BDESiteBundle:Default:boutique.html.twig', array('boutique' => $article));
+
+    }
 }
