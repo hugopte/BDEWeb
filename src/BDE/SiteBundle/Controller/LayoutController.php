@@ -24,7 +24,6 @@ class LayoutController extends Controller
     {
 
 
-
         $repository = $this
             ->getDoctrine()
             ->getManager()
@@ -422,4 +421,71 @@ class LayoutController extends Controller
         return $this->render('BDESiteBundle:Default:boutique.html.twig', array('boutique' => $article));
 
     }
+    public function addarticleAction(Request $request)
+
+    {
+        if ($request->isMethod('Get')) {
+            Return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig')
+        } else {
+
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('BDESiteBundle:Default:boutique');
+//Prise de l'utilisateur
+            $session = $request->getSession();
+            $users_id = $session->get('user_id');
+            $users = $repository->findOneBy(array('id_users' => $users_id));
+
+
+            $NomArticle = $request->request->get('nomArticle');
+            $Description = $request->request->get('Description');
+            $Prix = $request->request->get('PrixArticle');
+            $image = $request->files->get('image');
+
+            if ($NomArticle == "") {
+
+                $text = "Remplissage incorrect";
+                return $this->render('BDESiteBundle:Default:ajouterarticle.html.twig', array('text' => $text));
+
+                if ($users->getRoleUsers() == 'Admin') {
+
+                } else {
+
+                    $acticle = new article();
+
+                    $acticle->setNomArticle($NomArticle);
+                    $acticle->setPrixArticle($Prix);
+                    $acticle->setDescriptionArticle($Description);
+
+
+                    if ($image != null) {
+                        $path = 'ressources/image/';
+                        $nom = $NomArticle . $Prix . "img" . '.png';
+                        $resultatimage = $image->move($path, $nom);
+
+                        $acticle->setImage($path . $nom);
+
+                    } else {
+                        $article->setImage("ressources/images/defaults.png");
+                    }
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($article);
+                    $em->flush();
+
+                    $text = "Article ajouté";
+                    return $this->redirectToRoute("bde_site_gestion_boutique");
+
+
+                }
+            }
+            return new Response('Vous /n avez pas les droits' );
+        }
+    }
 }
+
+
+
+
+

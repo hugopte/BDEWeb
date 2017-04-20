@@ -46,7 +46,9 @@ bde_site_mentionslegales:
     path:     /mentions
     defaults: { _controller: BDESiteBundle:Accueil:mention }
 
-
+bde_site_layout_addarticle:
+    path:     /addarticle
+    defaults: { _controller: BDESiteBundle:Layout:addarticle }
 
 
 
