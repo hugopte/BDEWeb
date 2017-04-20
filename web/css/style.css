@@ -128,5 +128,5 @@ body{
 }
 
 .description-activite{
-    overflow-wrap: break-word;
+    width: 250px;
 }

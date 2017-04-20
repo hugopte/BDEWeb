@@ -33,9 +33,9 @@
 <article class="col-sm-3 col-md-3 col-lg-3">
     <h3>{{ activite.getNomActivite() }}</h3>
     <img src="{{ asset(activite.getImage()) }}" style="width: 200px;">
-    <label>Description de l'activité</label>
+    <label>Description de l'activité:</label>
     <p class="description-activite">{{ activite.getDescriptionActivite() }}</p>
-    <p>Date :{{ activite.getDateActivite()|date('d-m-Y') }}</p>
+    <p><strong>Date: </strong>{{ activite.getDateActivite()|date('d-m-Y') }}</p>
     <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank">Details</a>
     {% if users.getRoleUsers() == 'BDE' %}
         <a href="del/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank"> Supprimer </a>
@@ -81,6 +81,17 @@
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">// <![CDATA[
+        $(function(){
+            $(".description-activite").each(function(i){
+                len=$(this).text().length;
+                if(len>80)
+                {
+                    $(this).text($(this).text().substr(0,250)+'...');
+                }
+            });
+        });
+        // ]]></script>
 {% endblock %}
 
 </body>
