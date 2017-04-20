@@ -145,4 +145,9 @@ class AccueilController extends Controller
 
         }
     }
+    public function MentionslegalesActions()
+    {
+        return  $this->render('MentionsLegales.html.twig');
+    }
+
 }
