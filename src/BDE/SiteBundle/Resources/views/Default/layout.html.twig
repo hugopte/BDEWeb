@@ -36,7 +36,9 @@
     <label>Description de l'activité:</label>
     <p class="description-activite">{{ activite.getDescriptionActivite() }}</p>
     <p><strong>Date: </strong>{{ activite.getDateActivite()|date('d-m-Y') }}</p>
+    {% if activite.getValidationActivite() == true %}
     <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank">Details</a>
+    {% endif %}
     {% if users.getRoleUsers() == 'BDE' %}
         <a href="del/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank"> Supprimer </a>
 
