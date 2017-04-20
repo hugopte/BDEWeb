@@ -27,7 +27,9 @@ class boutique
      */
     private $prixArticle;
 
-
+    /**
+     * @ORM\Column(name="Image_article", type="text")
+     */
     private $image;
 
 

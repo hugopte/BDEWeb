@@ -14,9 +14,9 @@
 <body>
 
 <nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
-    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</a>
+    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Exia Cesi Arras<br/>Boutique</a>
     <div class="container">
-        <img src="{{ asset( users.getAvatarUsers()) }}" class="pull-right avatar">
+
         <p class="pull-right name-nav">Bonjour </p>
     </div>
 </nav>
@@ -29,13 +29,13 @@
 {% for article in boutique %}
 
     <article class="col-sm-4 col-md-4 col-lg-4">
-        <h3 class="col-sm-12 col-md-12 col-lg-12">{{ article.getNomArticle) }}</h3>
+        <h3 class="col-sm-12 col-md-12 col-lg-12">{{ article.getNomArticle() }}</h3>
         <img src="{{ asset(article.getImage()) }}" style="width: 200px;">
 
 
         <div class="form-group col-sm-12 col-md-12 col-lg-12">
             <label>Prix</label>
-            <p>{{article.getPrixArticle() }}</p>
+            <p>{{article.getPrixArticle() }} €</p>
         </div>
 
 
@@ -51,15 +51,7 @@
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
-                {% if users.getRoleUsers() == 'BDE' %}
-                    <li><a href="{{ path('bde_site_layout_add')}}">Soumettre activite</a></li>
-                {% elseif users.getRoleUsers() == 'Admin' %}
-                    <li><a href="{{ path('bde_site_layout_add')}}">Soumettre activite</a></li>
 
-                {% else %}
-                    <li><a href="{{ path('bde_site_layout_add')}}">Proposer activite</a></li>
-
-                {% endif %}
                 <li><a href="{{ path('bde_site_gestion_boutique')}}">Boutique</a></li>
             </ul>
             <a href="#"><img src="{{ asset('ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo"

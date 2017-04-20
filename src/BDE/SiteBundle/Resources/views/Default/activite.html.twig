@@ -82,13 +82,19 @@
                 <li><a href="#">Mentions légales</a></li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
+
+                <li><a href="{{ path('bde_site_gestion_boutique')}}">Boutique</a></li>
             </ul>
-            <a href="#"><img src="Photo/facebook-icon.png" alt="Facebook Logo" class="icons pull-right"></a>
-            <a href="#"><img src="Photo/twitter-icon.png" alt="Twitter Logo" class="icons pull-right"></a>
-            <a href="#"><img src="Photo/youtube-icon.png" alt="Youtube Logo" class="icons pull-right"></a>
+            <a href="#"><img src="{{ asset('ressources/Photo/facebook-icon.png') }}" alt="Facebook Logo"
+                             class="icons pull-right"></a>
+            <a href="#"><img src=" {{ asset('ressources/Photo/twitter-icon.png') }}" alt="Twitter Logo"
+                             class="icons pull-right"></a>
+            <a href="#"><img src="{{ asset('ressources/Photo/youtube-icon.png') }}" alt="Youtube Logo"
+                             class="icons pull-right"></a>
         </div>
     </div>
 </footer>
+
 
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.2.0.min.js') }}"></script>
