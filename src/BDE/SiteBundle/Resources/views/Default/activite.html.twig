@@ -12,9 +12,19 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse bg-faded navbar-fixed-top">
-    <a href="layout" class="navbar-brand mb-0">Exia Cesi Arras <br/>Campus Activité BDE</a>
+
+<nav class="navbar navbar-inverse bg-faded navbar-fixed-top" id="nav-top">
+    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Exia Cesi Arras<br/>Campus Activité BDE</a>
+    <div class="container">
+        <img src="{{ asset( users.getAvatarUsers()) }}" class="pull-right avatar">
+        <p class="pull-right name-nav">Bonjour {{ users.getPrenomUsers() }}</p>
+    </div>
 </nav>
+
+<div class="navbar navbar-inverse">
+    <a href="{{ path('bde_site_layout')}}" class="navbar-brand mb-0">Liste activités</a>
+    <a href="{{ path('bde_site_layout_activiteproposer')}}" class="navbar-brand mb-0"> Activité proposée </a>
+</div>
 
 
 <div>

@@ -37,7 +37,7 @@
     <p class="description-activite">{{ activite.getDescriptionActivite() }}</p>
     <p><strong>Date: </strong>{{ activite.getDateActivite()|date('d-m-Y') }}</p>
     {% if activite.getValidationActivite() == true %}
-    <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger" target="_blank">Details</a>
+    <a href="layout/activite/{{ activite.getIdActivite() }}" class="btn btn-danger">Details</a>
         {% else %}
         Vote:{{ activite.getNbrVote() }}
         <form action="" method="post">
