@@ -54,7 +54,7 @@ class AccueilController extends Controller
                         return $this->redirectToRoute('bde_site_layout');
 
                     } else {
-                        $error = "Mot de passe incorrecte";
+                        $error = "Mot de passe incorrect";
                         return $this->render('BDESiteBundle:Default:index.html.twig', array('text' => $error));
                     }
 
@@ -96,12 +96,12 @@ class AccueilController extends Controller
                 );
 
                 if ($users != null) {
-                    $error = "Email deja utilisé";
+                    $error = "Email déjà utilisée";
                     return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
                 } else {
 
                     if ($password != $Cpassword) {
-                        $error = "Mot de passe non identique" . $users->getEmailUsers();
+                        $error = "Mots de passe non identiques" . $users->getEmailUsers();
                         return $this->render('BDESiteBundle:Default:register.html.twig', array('error' => $error));
                     } else {
 

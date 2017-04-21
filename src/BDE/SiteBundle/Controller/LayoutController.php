@@ -121,7 +121,7 @@ class LayoutController extends Controller
                 $em->persist($activite);
                 $em->flush();
 
-                $text ="Inscription réussi";            //on affiche un msg pour l'inscription réussi
+                $text ="Inscription réussie";            //on affiche un msg pour l'inscription réussi
                 return $this->render('BDESiteBundle:Default:SoumettreActivite.html.twig',array('text' =>$text));
 
 
@@ -207,7 +207,7 @@ class LayoutController extends Controller
 
 
 
-            return new Response("Activite supprimer");
+            return new Response("Activité supprimée");
 
 
         }
