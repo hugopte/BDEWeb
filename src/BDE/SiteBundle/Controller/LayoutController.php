@@ -411,7 +411,7 @@ class LayoutController extends Controller
             ->getRepository('BDESiteBundle:vote');
             $i=0;
         foreach ($activite as $act) {
-
+            $i=0;
             $votes = $repository->findBy(array('id_activite' => $act));
             foreach ($votes as $vt) {
                 $i++;
